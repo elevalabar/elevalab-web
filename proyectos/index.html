@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Proyectos — Eleva Lab</title>
+<meta name="description" content="Los proyectos construidos por Eleva Lab: Eva Spa, El Burdel, YCA, un bot de Discord y la herramienta interna de gestión de comercios.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Proyectos — Eleva Lab">
+<meta property="og:description" content="Proyectos reales construidos por Eleva Lab.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="nav-sitio" id="nav-sitio"></header>
+
+<main>
+  <section class="hero" style="padding-bottom:20px;">
+    <div class="contenedor">
+      <h1 style="font-size: clamp(32px, 5vw, 48px);">Proyectos</h1>
+      <p class="descripcion" style="margin-top:16px;">
+        Un registro de lo que fuimos construyendo. Algunos proyectos están en
+        vivo, otros son prototipos, y uno es de uso interno.
+      </p>
+    </div>
+  </section>
+
+  <section class="envoltorio-seccion" style="padding-top:8px;">
+    <div class="contenedor">
+      <div class="lista-proyectos-completa" id="lista-proyectos-completa"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie-sitio" id="pie-sitio"></footer>
+
+<script src="../assets/js/site.js"></script>
+<script>
+  renderNavSitio('proyectos', '../');
+  renderFooterSitio('../');
+  renderListaProyectosCompleta('lista-proyectos-completa');
+</script>
+</body>
+</html>

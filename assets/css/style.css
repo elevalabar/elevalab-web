@@ -1,0 +1,385 @@
+/* ─────────────────────────────────────────────
+   ELEVA LAB — sistema visual del sitio público
+   Independiente del sistema visual de la app interna
+   (gestion-comercios). Concepto: cuaderno de laboratorio /
+   banco de trabajo técnico — no agencia corporativa.
+───────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+:root {
+  /* Color — base oscura tipo "taller de noche", dos acentos con
+     un porqué: índigo conecta con el degradé ya usado en el logo
+     de Eleva Lab; ámbar funciona como el testigo/LED de estado de
+     un equipo de laboratorio (en vivo / prototipo / interno). */
+  --bg: #101114;
+  --bg-elev: #17181d;
+  --bg-elev-2: #1b1c22;
+  --line: #26272c;
+  --line-soft: #1c1d22;
+  --ink: #ececea;
+  --ink-dim: #9a9aa1;
+  --ink-faint: #6b6c74;
+  --accent: #6e7bff;
+  --accent-dim: #4a52a8;
+  --signal: #f0a75a;
+  --signal-soft: #3a2e1c;
+
+  --radius: 6px;
+  --container: 1120px;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* ── Reset básico ─────────────────────────────────────────── */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.12;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+button { font: inherit; }
+
+/* Textura sutil tipo "plano técnico" — de fondo, casi imperceptible,
+   coherente con el concepto de laboratorio/ingeniería. */
+body {
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 26px 26px;
+  background-position: -6px -6px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+.contenedor {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.envoltorio-seccion { padding: 88px 0; }
+.envoltorio-seccion + .envoltorio-seccion { border-top: 1px solid var(--line-soft); }
+
+.etiqueta-seccion {
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+
+/* ── Botones ──────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  font-size: 14.5px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--ink);
+  transition: border-color .15s ease, background-color .15s ease, color .15s ease;
+}
+.btn:hover { border-color: var(--ink-dim); }
+.btn-primario {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0c0d1a;
+  font-weight: 600;
+}
+.btn-primario:hover { background: #8089ff; border-color: #8089ff; }
+.btn-fila { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn[aria-disabled="true"] {
+  color: var(--ink-faint);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ── Nav ──────────────────────────────────────────────────── */
+.nav-sitio {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: rgba(16,17,20,0.86);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line-soft);
+}
+.nav-sitio .contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.marca-sitio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--ink);
+}
+.marca-sitio .punto-estado {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 3px var(--signal-soft);
+  animation: pulso-estado 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes pulso-estado {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .45; }
+}
+.enlaces-nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.enlaces-nav a {
+  font-size: 14px;
+  color: var(--ink-dim);
+  text-decoration: none;
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+}
+.enlaces-nav a:hover, .enlaces-nav a.activo { color: var(--ink); }
+.enlaces-nav a.activo { border-color: var(--accent); }
+.btn-menu-movil {
+  display: none;
+  background: none; border: 1px solid var(--line); border-radius: var(--radius);
+  color: var(--ink); width: 40px; height: 40px; cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .enlaces-nav {
+    position: fixed; top: 68px; left: 0; right: 0;
+    background: var(--bg-elev); border-bottom: 1px solid var(--line);
+    flex-direction: column; align-items: flex-start; gap: 0;
+    padding: 8px 24px 18px;
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .15s ease, transform .15s ease, visibility .15s;
+  }
+  .enlaces-nav.abierto { opacity: 1; transform: translateY(0); visibility: visible; }
+  .enlaces-nav a { padding: 12px 0; width: 100%; border-bottom: 1px solid var(--line-soft); }
+  .btn-menu-movil { display: flex; align-items: center; justify-content: center; }
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  padding: 96px 0 80px;
+}
+.hero h1 {
+  font-size: clamp(40px, 8vw, 76px);
+  margin-bottom: 22px;
+}
+.hero .frase-marca {
+  font-size: clamp(19px, 2.6vw, 24px);
+  color: var(--ink);
+  max-width: 620px;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.hero .descripcion {
+  font-size: 16.5px;
+  color: var(--ink-dim);
+  max-width: 560px;
+  margin-bottom: 36px;
+}
+
+/* ── Qué hacemos — lista de áreas, no íconos decorativos ────── */
+.lista-areas { border-top: 1px solid var(--line-soft); }
+.fila-area {
+  display: flex;
+  gap: 22px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line-soft);
+  align-items: baseline;
+}
+.fila-area .punto {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+.fila-area h3 { font-size: 17px; margin-bottom: 6px; }
+.fila-area p { color: var(--ink-dim); font-size: 15px; max-width: 560px; }
+
+/* ── Proyectos — paneles planos, sin sombra ni look SaaS ────── */
+.rejilla-proyectos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line-soft);
+  border: 1px solid var(--line-soft);
+}
+@media (max-width: 700px) {
+  .rejilla-proyectos { grid-template-columns: 1fr; }
+}
+.tarjeta-proyecto {
+  background: var(--bg);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 210px;
+}
+.cabecera-tarjeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.tarjeta-proyecto h3 { font-size: 19px; }
+.pildora-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-dim);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+.pildora-estado .punto { width: 6px; height: 6px; border-radius: 50%; }
+.pildora-estado.en-vivo .punto { background: var(--signal); }
+.pildora-estado.prototipo .punto { background: var(--accent); }
+.pildora-estado.interno .punto { background: var(--ink-faint); }
+
+.categoria-proyecto { font-size: 12.5px; color: var(--ink-faint); }
+.descripcion-proyecto { color: var(--ink-dim); font-size: 14.5px; flex: 1; }
+.pie-tarjeta { margin-top: auto; }
+.pie-tarjeta a { font-size: 14px; color: var(--accent); text-decoration: none; font-weight: 500; }
+.pie-tarjeta a:hover { text-decoration: underline; }
+.pie-tarjeta .sin-enlace { font-size: 13px; color: var(--ink-faint); }
+
+/* ── Proyectos — vista completa (/proyectos/) ────────────────── */
+.lista-proyectos-completa { display: flex; flex-direction: column; }
+.entrada-proyecto {
+  border-top: 1px solid var(--line-soft);
+  padding: 44px 0;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+}
+.lista-proyectos-completa .entrada-proyecto:last-child { border-bottom: 1px solid var(--line-soft); }
+@media (max-width: 760px) {
+  .entrada-proyecto { grid-template-columns: 1fr; gap: 18px; }
+}
+.entrada-proyecto .columna-meta { display: flex; flex-direction: column; gap: 10px; }
+.entrada-proyecto h3 { font-size: 24px; margin-bottom: 4px; }
+.bloque-campo { margin-bottom: 16px; }
+.bloque-campo:last-child { margin-bottom: 0; }
+.bloque-campo .titulo-campo { font-size: 12.5px; color: var(--ink-faint); margin-bottom: 5px; }
+.bloque-campo p, .bloque-campo div { color: var(--ink-dim); font-size: 15px; }
+.lista-tecnologias { display: flex; flex-wrap: wrap; gap: 8px; }
+.lista-tecnologias li {
+  font-size: 12.5px; color: var(--ink-dim);
+  border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px;
+}
+
+/* ── Sobre ────────────────────────────────────────────────── */
+.texto-largo { max-width: 660px; }
+.texto-largo p { color: var(--ink-dim); font-size: 16.5px; margin-bottom: 22px; }
+.texto-largo p:last-child { margin-bottom: 0; }
+.texto-largo strong { color: var(--ink); font-weight: 600; }
+
+/* ── CTA ──────────────────────────────────────────────────── */
+.cta {
+  border-top: 1px solid var(--line-soft);
+  padding: 80px 0;
+  text-align: left;
+}
+.cta h2 { font-size: clamp(28px, 4vw, 40px); max-width: 620px; margin-bottom: 18px; }
+.cta p { color: var(--ink-dim); max-width: 520px; margin-bottom: 30px; font-size: 16px; }
+
+/* ── Contacto ─────────────────────────────────────────────── */
+.panel-contacto {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 40px;
+  max-width: 560px;
+}
+.fila-contacto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.fila-contacto:last-child { border-bottom: none; }
+.fila-contacto .nombre-canal { font-size: 15px; font-weight: 500; }
+.fila-contacto .detalle-canal { font-size: 13.5px; color: var(--ink-faint); margin-top: 3px; }
+.fila-contacto a.valor-canal { color: var(--accent); text-decoration: none; font-size: 14.5px; }
+.fila-contacto a.valor-canal:hover { text-decoration: underline; }
+.fila-contacto .valor-canal.pendiente { color: var(--ink-faint); font-size: 14px; }
+
+/* ── Footer ───────────────────────────────────────────────── */
+.pie-sitio {
+  border-top: 1px solid var(--line-soft);
+  padding: 56px 0 40px;
+}
+.pie-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+@media (max-width: 700px) {
+  .pie-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+.pie-marca .marca-sitio { margin-bottom: 12px; }
+.pie-marca p { color: var(--ink-faint); font-size: 14px; max-width: 320px; }
+.pie-columna h4 {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--ink-faint);
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+.pie-columna ul { display: flex; flex-direction: column; gap: 10px; }
+.pie-columna a {
+  font-size: 14px; color: var(--ink-dim); text-decoration: none;
+}
+.pie-columna a:hover { color: var(--ink); }
+.pie-columna span.pendiente { font-size: 14px; color: var(--ink-faint); }
+.pie-base {
+  border-top: 1px solid var(--line-soft);
+  padding-top: 24px;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+/* ── Utilidades ───────────────────────────────────────────── */
+.oculto { display: none !important; }
