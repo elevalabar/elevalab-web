@@ -56,14 +56,15 @@ const PROYECTOS = [
   {
     id: 'el-burdel',
     nombre: 'El Burdel',
-    categoria: 'Categoría a definir',
-    estado: 'prototipo',
-    pendiente: true,
-    descripcionBreve: 'Descripción pendiente de completar.',
-    problema: 'Contenido pendiente — completar con el problema u objetivo real del proyecto.',
-    construido: 'Contenido pendiente — completar con lo que efectivamente se construyó.',
-    tecnologias: [],
-    url: ''
+    categoria: 'Plataforma privada de minijuegos',
+    estado: 'en-vivo',
+    pendiente: false,
+    descripcionBreve: 'Plataforma web privada de minijuegos para una comunidad cerrada, con acceso por registro y aprobación manual de un administrador.',
+    problema: 'Darle a una comunidad cerrada un espacio propio de juego, ranking y contenido diario, con acceso controlado.',
+    construido: 'Un dashboard privado con sesiones de juego en vivo (Taboo, Wordle, El Impostor, ¿Quién Soy?, El Millonario y Ruleta), ranking global, tests de personalidad grupal, noticias y tablón, galería de fotos por álbumes, reproductor de música y horóscopo diario y mensual, además de una landing pública y páginas legales.',
+    aporte: 'Diagnóstico y resolución de problemas de registro y autenticación, rediseño UX y modularización del panel de administración, desarrollo completo de los módulos de Tests y Horóscopo —este último automatizado con Apps Script y la API de Gemini—, mejoras del sistema de música, rediseño de la landing pública y desarrollo de la galería.',
+    tecnologias: ['HTML5', 'CSS3', 'JavaScript (ES6)', 'Firebase Authentication', 'Firebase Realtime Database', 'Google Apps Script', 'Google Drive', 'Gemini API', 'GitHub Pages'],
+    url: 'https://elburdel.com.ar'
   },
   {
     id: 'yca',
@@ -263,6 +264,10 @@ function renderListaProyectosCompleta(idContenedor) {
       ? `<ul class="tec">${p.tecnologias.map(t => `<li>${t}</li>`).join('')}</ul>`
       : 'Por confirmar.';
 
+    const aporte = p.aporte
+      ? `<div><dt>Mi aporte</dt><dd>${p.aporte}</dd></div>`
+      : '';
+
     const cuerpo = p.pendiente
       ? `<p class="pr-pend">Ficha en preparación. Este proyecto todavía no tiene descripción pública.</p>`
       : `
@@ -271,6 +276,7 @@ function renderListaProyectosCompleta(idContenedor) {
           <div><dt>Problema / objetivo</dt><dd>${p.problema}</dd></div>
           <div><dt>Qué se construyó</dt><dd>${p.construido}</dd></div>
           <div><dt>Tecnologías</dt><dd>${tecnologias}</dd></div>
+          ${aporte}
         </dl>`;
 
     return `
