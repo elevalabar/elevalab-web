@@ -2,131 +2,113 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Eleva Lab — Elevamos negocios con tecnología</title>
-<meta name="description" content="Eleva Lab es el proyecto de Sebastián Quiven para ayudar a negocios a mejorar su presencia digital y aprovechar herramientas tecnológicas para crecer. Conocé los proyectos reales que estamos construyendo.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:title" content="Eleva Lab — Elevamos negocios con tecnología">
-<meta property="og:description" content="Ayudamos a negocios a mejorar su presencia digital, encontrar oportunidades y aprovechar herramientas tecnológicas para crecer.">
+<title>ElevaLab — Tecnología para que los negocios avancen</title>
+<meta name="description" content="ElevaLab es el proyecto profesional de Sebastián Quiven: herramientas y soluciones tecnológicas para negocios. Conocé los proyectos reales que se están construyendo.">
+<link rel="canonical" href="https://elevalabar.github.io/elevalab-web/index.html">
+<meta name="theme-color" content="#0d0e13">
+<meta property="og:title" content="ElevaLab — Tecnología para que los negocios avancen">
+<meta property="og:description" content="Herramientas y soluciones tecnológicas para negocios, construidas por Sebastián Quiven.">
 <meta property="og:type" content="website">
-<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://elevalabar.github.io/elevalab-web/index.html">
+<link rel="icon" type="image/png" href="assets/img/logo-oscuro.png">
+<link rel="apple-touch-icon" href="assets/img/logo-oscuro.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<header class="nav-sitio" id="nav-sitio"></header>
+<header class="nav" id="nav-sitio"></header>
 
-<main>
+<main id="contenido">
 
-  <!-- HERO -->
   <section class="hero">
-    <div class="contenedor">
-      <h1>ELEVA LAB</h1>
-      <p class="frase-marca">Elevamos negocios con tecnología.</p>
-      <p class="descripcion">Ayudamos a negocios a mejorar su presencia digital, encontrar oportunidades y aprovechar herramientas tecnológicas para crecer.</p>
-      <div class="btn-fila">
-        <a href="proyectos/index.html" class="btn btn-primario">Ver proyectos</a>
-        <a href="sobre/index.html" class="btn">Conocer Eleva Lab</a>
+    <div class="hero-rejilla" aria-hidden="true"></div>
+    <div class="contenedor hero-cuerpo">
+      <div class="hero-texto">
+        <p class="mono hero-sup">Estudio tecnológico independiente</p>
+        <h1>Tecnología para que los negocios avancen.</h1>
+        <p class="lead">ElevaLab es el proyecto profesional de Sebastián Quiven: herramientas y soluciones tecnológicas para negocios reales.</p>
+        <div class="botones">
+          <a class="btn btn-primario" href="proyectos/index.html">Ver proyectos</a>
+          <a class="btn" href="sobre/index.html">Conocer ElevaLab</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <svg viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false">
+          <circle cx="200" cy="200" r="199" stroke="#252733"/>
+          <circle cx="200" cy="200" r="140" stroke="#3b3e54" stroke-dasharray="2 7"/>
+          <path d="M0 200H400M200 0V400" stroke="#252733"/>
+          <path class="trazo" d="M14 386L386 14" pathLength="1" stroke="#7482ff" stroke-width="1.5"/>
+          <rect x="10" y="382" width="8" height="8" fill="#7482ff"/>
+        </svg>
+        <img src="assets/img/logo-oscuro.png" alt="Logo de ElevaLab" width="500" height="500">
       </div>
     </div>
+    <div class="estado-lab" id="estado-lab"></div>
   </section>
 
-  <!-- QUÉ HACEMOS -->
-  <section class="envoltorio-seccion">
-    <div class="contenedor">
+  <section class="seccion">
+    <div class="contenedor cabecera">
       <h2>En qué estamos trabajando</h2>
-      <p style="color:var(--ink-dim); max-width:560px; margin-top:12px;">
-        Todavía no ofrecemos un catálogo cerrado de servicios. Estas son las
-        áreas alrededor de las que construimos proyectos hoy.
-      </p>
-
-      <div class="lista-areas" style="margin-top:32px;">
-        <div class="fila-area">
-          <span class="punto"></span>
-          <div>
+      <div>
+        <p class="intro">Todavía no ofrecemos un catálogo cerrado de servicios. Estas son las áreas alrededor de las que construimos proyectos hoy.</p>
+        <ul class="areas">
+          <li>
             <h3>Presencia digital</h3>
             <p>Ayudar a que un negocio se pueda encontrar y entender bien en internet.</p>
-          </div>
-        </div>
-        <div class="fila-area">
-          <span class="punto"></span>
-          <div>
+          </li>
+          <li>
             <h3>Crecimiento de negocios</h3>
             <p>Entender dónde están las oportunidades reales de un negocio para crecer.</p>
-          </div>
-        </div>
-        <div class="fila-area">
-          <span class="punto"></span>
-          <div>
+          </li>
+          <li>
             <h3>Herramientas digitales</h3>
             <p>Construir herramientas a medida cuando una planilla o un proceso manual ya no alcanza.</p>
-          </div>
-        </div>
-        <div class="fila-area">
-          <span class="punto"></span>
-          <div>
+          </li>
+          <li>
             <h3>Automatización</h3>
             <p>Sacar de en medio las tareas repetitivas para que quede tiempo para lo importante.</p>
-          </div>
-        </div>
-        <div class="fila-area">
-          <span class="punto"></span>
-          <div>
+          </li>
+          <li>
             <h3>Tecnología aplicada</h3>
             <p>Usar tecnología de forma concreta, no como palabra de moda.</p>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- PROYECTOS -->
-  <section class="envoltorio-seccion">
+  <section class="seccion">
     <div class="contenedor">
       <h2>Proyectos</h2>
-      <p style="color:var(--ink-dim); max-width:560px; margin-top:12px; margin-bottom:32px;">
-        Esto es lo que ya construimos. Algunos están en producción, otros son
-        prototipos o herramientas de uso interno.
-      </p>
-      <div class="rejilla-proyectos" id="rejilla-proyectos-home"></div>
-      <div style="margin-top:28px;">
-        <a href="proyectos/index.html" class="btn">Ver todos los proyectos</a>
-      </div>
+      <p class="intro" style="margin-top:20px">Esto es lo que ya construimos. Algunos están en vivo, otros son prototipos o herramientas de uso interno.</p>
+      <ul class="indice" id="indice-home"></ul>
+      <a class="btn" href="proyectos/index.html">Ver todos los proyectos</a>
     </div>
   </section>
 
-  <!-- SOBRE (resumen) -->
-  <section class="envoltorio-seccion">
-    <div class="contenedor">
-      <h2>Sobre Eleva Lab</h2>
-      <div class="texto-largo" style="margin-top:20px;">
-        <p>Eleva Lab es un proyecto profesional de <strong>Sebastián Quiven</strong>, y funciona como marca paraguas para los proyectos y herramientas que construye.</p>
-      </div>
-      <div style="margin-top:24px;">
-        <a href="sobre/index.html" class="btn">Leer más</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
+  <section class="seccion cierre">
     <div class="contenedor">
       <h2>¿Tenés un negocio y querés contarnos en qué estás trabajando?</h2>
-      <p>Eleva Lab está en construcción — la forma más directa de contactarnos hoy es por Instagram.</p>
-      <div class="btn-fila">
-        <a href="contacto/index.html" class="btn btn-primario">Ir a contacto</a>
-      </div>
+      <p>ElevaLab está en construcción. La forma más directa de contactarnos hoy es por Instagram.</p>
+      <a class="btn btn-primario" href="contacto/index.html">Ir a contacto</a>
     </div>
   </section>
 
 </main>
 
-<footer class="pie-sitio" id="pie-sitio"></footer>
+<footer class="pie" id="pie-sitio"></footer>
 
 <script src="assets/js/site.js"></script>
 <script>
   renderNavSitio('inicio', '');
   renderFooterSitio('');
-  renderTarjetasProyectos('rejilla-proyectos-home');
+  renderEstadoLab('estado-lab');
+  renderIndiceProyectos('indice-home', 'proyectos/index.html');
 </script>
 </body>
 </html>
