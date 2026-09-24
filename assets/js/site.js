@@ -1,13 +1,12 @@
 // ─────────────────────────────────────────────
-// ELEVA LAB — datos y componentes compartidos del sitio público.
-// Todo lo editable a futuro (redes, proyectos) vive ACÁ, en un
-// solo lugar, para no tener que tocar los 4 archivos .html.
+// ELEVALAB — datos y componentes compartidos del sitio público.
+// Todo lo editable (redes, proyectos, navegación) vive ACÁ, en un
+// solo lugar, para no tener que tocar los archivos .html.
 // ─────────────────────────────────────────────
 
 // Redes / enlaces externos.
 // Completar github, linkedin y cv apenas existan esas URLs.
-// Mientras estén vacíos ("") el sitio los muestra como "Próximamente"
-// en vez de inventar un enlace.
+// Mientras estén vacíos ("") el sitio muestra "Próximamente".
 const REDES = {
   instagram: 'https://instagram.com/elevalab.ar',
   github: '',
@@ -15,13 +14,31 @@ const REDES = {
   cv: ''
 };
 
-// Catálogo de proyectos. Fuente única para la vista resumida (home)
-// y la vista completa (/proyectos/).
+// Texto descriptivo de cada canal (se usa en Contacto).
+const REDES_INFO = [
+  { clave: 'instagram', nombre: 'Instagram', detalle: '@elevalab.ar' },
+  { clave: 'github', nombre: 'GitHub', detalle: 'Repositorios de ElevaLab' },
+  { clave: 'linkedin', nombre: 'LinkedIn', detalle: 'Sebastián Quiven' },
+  { clave: 'cv', nombre: 'CV', detalle: 'Currículum de Sebastián Quiven' }
+];
+
+// Logo (relativo a la raíz del sitio; se le antepone `base`).
+const LOGO = 'assets/img/logo-oscuro.png';
+
+// Navegación principal.
+const NAV = [
+  { id: 'inicio', texto: 'Inicio', ruta: 'index.html' },
+  { id: 'sobre', texto: 'Sobre', ruta: 'sobre/index.html' },
+  { id: 'proyectos', texto: 'Proyectos', ruta: 'proyectos/index.html' },
+  { id: 'contacto', texto: 'Contacto', ruta: 'contacto/index.html' }
+];
+
+// Catálogo de proyectos. Fuente única para la home y /proyectos/.
 //
 // estado: 'en-vivo' | 'prototipo' | 'interno'
-// url: dejar '' si todavía no hay un enlace público real — el sitio
-//      NUNCA inventa una URL, muestra "Enlace próximamente" o
-//      "Herramienta interna" según corresponda.
+// pendiente: true mientras el proyecto no tenga información real
+//            (el sitio muestra "Ficha en preparación" y no los textos de relleno).
+// url: dejar '' si no hay un enlace público real — el sitio NUNCA inventa una URL.
 // tecnologias: dejar [] si todavía no está confirmado.
 const PROYECTOS = [
   {
@@ -29,6 +46,7 @@ const PROYECTOS = [
     nombre: 'Eva Spa',
     categoria: 'Categoría a definir',
     estado: 'prototipo',
+    pendiente: true,
     descripcionBreve: 'Descripción pendiente de completar.',
     problema: 'Contenido pendiente — completar con el problema u objetivo real del proyecto.',
     construido: 'Contenido pendiente — completar con lo que efectivamente se construyó.',
@@ -40,6 +58,7 @@ const PROYECTOS = [
     nombre: 'El Burdel',
     categoria: 'Categoría a definir',
     estado: 'prototipo',
+    pendiente: true,
     descripcionBreve: 'Descripción pendiente de completar.',
     problema: 'Contenido pendiente — completar con el problema u objetivo real del proyecto.',
     construido: 'Contenido pendiente — completar con lo que efectivamente se construyó.',
@@ -51,6 +70,7 @@ const PROYECTOS = [
     nombre: 'YCA',
     categoria: 'Categoría a definir',
     estado: 'prototipo',
+    pendiente: true,
     descripcionBreve: 'Descripción pendiente de completar.',
     problema: 'Contenido pendiente — completar con el problema u objetivo real del proyecto.',
     construido: 'Contenido pendiente — completar con lo que efectivamente se construyó.',
@@ -62,6 +82,7 @@ const PROYECTOS = [
     nombre: 'Bot de Discord',
     categoria: 'Automatización',
     estado: 'prototipo',
+    pendiente: true,
     descripcionBreve: 'Descripción pendiente de completar.',
     problema: 'Contenido pendiente — completar con el problema u objetivo real del proyecto.',
     construido: 'Contenido pendiente — completar con lo que efectivamente se construyó.',
@@ -71,8 +92,9 @@ const PROYECTOS = [
   {
     id: 'gestion-comercios',
     nombre: 'Gestión de comercios',
-    categoria: 'Herramienta interna · Eleva Lab',
+    categoria: 'Herramienta interna · ElevaLab',
     estado: 'interno',
+    pendiente: false,
     descripcionBreve: 'Herramienta interna para relevar y dar seguimiento a comercios: fichas, auditorías, diagnóstico y prospección.',
     problema: 'Centralizar el relevamiento y seguimiento de comercios en un solo lugar, en vez de planillas sueltas.',
     construido: 'Una aplicación web con alta y ficha de comercios, cuestionarios de auditoría e inspección, un diagnóstico digital y un módulo de prospección desde datos de Google Maps.',
@@ -81,25 +103,34 @@ const PROYECTOS = [
   }
 ];
 
-const ICONO_ENLACE_EXTERNO = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
-
 const ETIQUETAS_ESTADO = {
-  'en-vivo': { texto: 'En vivo', clase: 'en-vivo' },
-  'prototipo': { texto: 'Prototipo', clase: 'prototipo' },
-  'interno': { texto: 'Uso interno', clase: 'interno' }
+  'en-vivo': 'En vivo',
+  'prototipo': 'Prototipo',
+  'interno': 'Interno'
 };
 
-function pildoraEstado(estado) {
-  const info = ETIQUETAS_ESTADO[estado] || ETIQUETAS_ESTADO.prototipo;
-  return `<span class="pildora-estado ${info.clase}"><span class="punto"></span>${info.texto}</span>`;
+const ICONO_MENU = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>';
+
+// ── Helpers ──────────────────────────────────────────────────
+function indicadorEstado(estado) {
+  const clave = ETIQUETAS_ESTADO[estado] ? estado : 'prototipo';
+  return `<span class="estado ${clave}"><i aria-hidden="true"></i>${ETIQUETAS_ESTADO[clave]}</span>`;
+}
+
+function numeroProyecto(i) {
+  return String(i + 1).padStart(2, '0');
+}
+
+function categoriaProyecto(p) {
+  return p.categoria === 'Categoría a definir' ? 'Ficha en preparación' : p.categoria;
 }
 
 function enlaceProyecto(p) {
   if (p.url) {
-    return `<a href="${p.url}" target="_blank" rel="noopener">Ver proyecto ${ICONO_ENLACE_EXTERNO}</a>`;
+    return `<a class="enlace" href="${p.url}" target="_blank" rel="noopener">Ver proyecto ↗</a>`;
   }
   if (p.estado === 'interno') {
-    return `<span class="sin-enlace">Herramienta interna — sin acceso público</span>`;
+    return `<span class="sin-enlace">Herramienta interna, sin acceso público</span>`;
   }
   return `<span class="sin-enlace">Enlace próximamente</span>`;
 }
@@ -107,99 +138,118 @@ function enlaceProyecto(p) {
 // ── Nav ──────────────────────────────────────────────────────
 function renderNavSitio(activo, base) {
   base = base || '';
+  document.body.insertAdjacentHTML('afterbegin', '<a class="skip" href="#contenido">Ir al contenido</a>');
+
   const contenedor = document.getElementById('nav-sitio');
   if (!contenedor) return;
 
+  const enlaces = NAV.map(n =>
+    `<a href="${base}${n.ruta}"${n.id === activo ? ' aria-current="page"' : ''}>${n.texto}</a>`
+  ).join('');
+
   contenedor.innerHTML = `
     <div class="contenedor">
-      <a class="marca-sitio" href="${base}index.html">
-        <span class="punto-estado" aria-hidden="true"></span>
-        ELEVA LAB
+      <a class="marca" href="${base}index.html">
+        <img src="${base}${LOGO}" alt="" width="34" height="34">
+        ElevaLab
       </a>
-      <button class="btn-menu-movil" id="btnMenuMovil" aria-label="Abrir menú" aria-expanded="false" aria-controls="enlacesNav">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
-      <nav class="enlaces-nav" id="enlacesNav" aria-label="Navegación principal">
-        <a href="${base}index.html" class="${activo === 'inicio' ? 'activo' : ''}">Inicio</a>
-        <a href="${base}proyectos/index.html" class="${activo === 'proyectos' ? 'activo' : ''}">Proyectos</a>
-        <a href="${base}sobre/index.html" class="${activo === 'sobre' ? 'activo' : ''}">Sobre</a>
-        <a href="${base}contacto/index.html" class="${activo === 'contacto' ? 'activo' : ''}">Contacto</a>
-      </nav>
+      <button class="btn-menu" id="btnMenu" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="enlacesNav">${ICONO_MENU}</button>
+      <nav class="enlaces" id="enlacesNav" aria-label="Navegación principal">${enlaces}</nav>
     </div>
   `;
 
-  const btn = document.getElementById('btnMenuMovil');
-  const enlaces = document.getElementById('enlacesNav');
-  btn.addEventListener('click', () => {
-    const abierto = enlaces.classList.toggle('abierto');
+  const btn = document.getElementById('btnMenu');
+  const nav = document.getElementById('enlacesNav');
+  const fijar = abierto => {
+    nav.classList.toggle('abierto', abierto);
     btn.setAttribute('aria-expanded', String(abierto));
+    btn.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+  };
+  btn.addEventListener('click', () => fijar(!nav.classList.contains('abierto')));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav.classList.contains('abierto')) {
+      fijar(false);
+      btn.focus();
+    }
   });
 }
 
 // ── Footer ───────────────────────────────────────────────────
-function celdaRed(nombre, url) {
-  if (url) {
-    return `<li><a href="${url}" target="_blank" rel="noopener">${nombre}</a></li>`;
-  }
-  return `<li><span class="pendiente">${nombre} — próximamente</span></li>`;
-}
-
 function renderFooterSitio(base) {
   base = base || '';
   const contenedor = document.getElementById('pie-sitio');
   if (!contenedor) return;
 
+  const redes = REDES_INFO.map(r => REDES[r.clave]
+    ? `<li><a href="${REDES[r.clave]}" target="_blank" rel="noopener">${r.nombre}</a></li>`
+    : `<li><span class="pendiente">${r.nombre}, próximamente</span></li>`
+  ).join('');
+  const explorar = NAV.map(n => `<li><a href="${base}${n.ruta}">${n.texto}</a></li>`).join('');
+
   contenedor.innerHTML = `
     <div class="contenedor">
       <div class="pie-grid">
-        <div class="pie-marca">
-          <a class="marca-sitio" href="${base}index.html">
-            <span class="punto-estado" aria-hidden="true"></span>
-            ELEVA LAB
+        <div>
+          <a class="pie-marca" href="${base}index.html">
+            <img src="${base}${LOGO}" alt="" width="56" height="56">
+            <span>ElevaLab</span>
           </a>
-          <p>Un proyecto de Sebastián Quiven para ayudar a negocios a crecer con tecnología.</p>
+          <p class="pie-frase">Tecnología para que los negocios avancen.</p>
         </div>
-        <div class="pie-columna">
-          <h4>Explorar</h4>
-          <ul>
-            <li><a href="${base}index.html">Inicio</a></li>
-            <li><a href="${base}proyectos/index.html">Proyectos</a></li>
-            <li><a href="${base}sobre/index.html">Sobre Eleva Lab</a></li>
-            <li><a href="${base}contacto/index.html">Contacto</a></li>
-          </ul>
+        <div>
+          <h2 class="pie-tit">Explorar</h2>
+          <ul>${explorar}</ul>
         </div>
-        <div class="pie-columna">
-          <h4>Redes</h4>
-          <ul>
-            ${celdaRed('Instagram', REDES.instagram)}
-            ${celdaRed('GitHub', REDES.github)}
-            ${celdaRed('LinkedIn', REDES.linkedin)}
-            ${celdaRed('CV', REDES.cv)}
-          </ul>
+        <div>
+          <h2 class="pie-tit">Redes</h2>
+          <ul>${redes}</ul>
         </div>
       </div>
       <div class="pie-base">
-        © ${new Date().getFullYear()} Eleva Lab. Marca en construcción.
+        <span>© ${new Date().getFullYear()} ElevaLab</span>
+        <span>Un proyecto de Sebastián Quiven</span>
+        <span>Marca en construcción</span>
       </div>
     </div>
   `;
 }
 
-// ── Tarjetas de proyecto (home — versión resumida) ───────────
-function renderTarjetasProyectos(idContenedor) {
+// ── Franja de estado (home) — calculada desde PROYECTOS ──────
+function renderEstadoLab(idContenedor) {
   const cont = document.getElementById(idContenedor);
   if (!cont) return;
 
-  cont.innerHTML = PROYECTOS.map(p => `
-    <article class="tarjeta-proyecto">
-      <div class="cabecera-tarjeta">
-        <h3>${p.nombre}</h3>
-        ${pildoraEstado(p.estado)}
-      </div>
-      <div class="categoria-proyecto">${p.categoria}</div>
-      <p class="descripcion-proyecto">${p.descripcionBreve}</p>
-      <div class="pie-tarjeta">${enlaceProyecto(p)}</div>
-    </article>
+  const cuenta = e => PROYECTOS.filter(p => p.estado === e).length;
+  const estados = Object.keys(ETIQUETAS_ESTADO)
+    .filter(e => cuenta(e) > 0)
+    .map(e => `<span class="estado ${e}"><i aria-hidden="true"></i>${ETIQUETAS_ESTADO[e]} <b>${cuenta(e)}</b></span>`)
+    .join('');
+
+  cont.innerHTML = `
+    <div class="contenedor">
+      <span class="mono">${PROYECTOS.length} proyectos registrados</span>
+      ${estados}
+    </div>
+  `;
+}
+
+// ── Índice de proyectos (home y arriba de /proyectos/) ───────
+// prefijo: '' en /proyectos/ (ancla local) o 'proyectos/index.html' desde la home.
+function renderIndiceProyectos(idContenedor, prefijo) {
+  const cont = document.getElementById(idContenedor);
+  if (!cont) return;
+  prefijo = prefijo || '';
+
+  cont.innerHTML = PROYECTOS.map((p, i) => `
+    <li>
+      <a class="fila-proy" href="${prefijo}#${p.id}">
+        <span class="fp-num mono">${numeroProyecto(i)}</span>
+        <span class="fp-nombre">${p.nombre}</span>
+        <span class="fp-cat">${categoriaProyecto(p)}</span>
+        ${indicadorEstado(p.estado)}
+        <span class="fp-flecha" aria-hidden="true">↗</span>
+      </a>
+    </li>
   `).join('');
 }
 
@@ -208,30 +258,58 @@ function renderListaProyectosCompleta(idContenedor) {
   const cont = document.getElementById(idContenedor);
   if (!cont) return;
 
-  cont.innerHTML = PROYECTOS.map(p => `
-    <article class="entrada-proyecto" id="${p.id}">
-      <div class="columna-meta">
-        <h3>${p.nombre}</h3>
-        ${pildoraEstado(p.estado)}
-        <div class="categoria-proyecto">${p.categoria}</div>
-        ${enlaceProyecto(p)}
-      </div>
-      <div class="columna-detalle">
-        <div class="bloque-campo">
-          <div class="titulo-campo">Problema / objetivo</div>
-          <p>${p.problema}</p>
+  cont.innerHTML = PROYECTOS.map((p, i) => {
+    const tecnologias = p.tecnologias.length
+      ? `<ul class="tec">${p.tecnologias.map(t => `<li>${t}</li>`).join('')}</ul>`
+      : 'Por confirmar.';
+
+    const cuerpo = p.pendiente
+      ? `<p class="pr-pend">Ficha en preparación. Este proyecto todavía no tiene descripción pública.</p>`
+      : `
+        <p class="pr-desc">${p.descripcionBreve}</p>
+        <dl class="pr-datos">
+          <div><dt>Problema / objetivo</dt><dd>${p.problema}</dd></div>
+          <div><dt>Qué se construyó</dt><dd>${p.construido}</dd></div>
+          <div><dt>Tecnologías</dt><dd>${tecnologias}</dd></div>
+        </dl>`;
+
+    return `
+      <article class="proyecto" id="${p.id}">
+        <div class="pr-num" aria-hidden="true">${numeroProyecto(i)}</div>
+        <div class="pr-cuerpo">
+          <div class="pr-top">
+            ${indicadorEstado(p.estado)}
+            <span class="pr-cat">${categoriaProyecto(p)}</span>
+          </div>
+          <h2>${p.nombre}</h2>
+          ${cuerpo}
+          <div>${enlaceProyecto(p)}</div>
         </div>
-        <div class="bloque-campo">
-          <div class="titulo-campo">Qué se construyó</div>
-          <p>${p.construido}</p>
-        </div>
-        <div class="bloque-campo">
-          <div class="titulo-campo">Tecnologías</div>
-          ${p.tecnologias.length
-            ? `<ul class="lista-tecnologias">${p.tecnologias.map(t => `<li>${t}</li>`).join('')}</ul>`
-            : `<p>Por confirmar.</p>`}
-        </div>
-      </div>
-    </article>
-  `).join('');
+      </article>
+    `;
+  }).join('');
+}
+
+// ── Contacto ─────────────────────────────────────────────────
+function renderContactoSitio(idContenedor) {
+  const cont = document.getElementById(idContenedor);
+  if (!cont) return;
+
+  const [principal, ...resto] = REDES_INFO;
+  const destacado = REDES[principal.clave]
+    ? `<a class="ig" href="${REDES[principal.clave]}" target="_blank" rel="noopener">
+         <span class="mono">Canal directo hoy: ${principal.nombre}</span>
+         <span class="ig-nombre">${principal.detalle}</span>
+         <span class="ig-flecha" aria-hidden="true">↗</span>
+       </a>`
+    : '';
+
+  const filas = (destacado ? resto : REDES_INFO).map(r => {
+    const valor = REDES[r.clave]
+      ? `<a class="enlace" href="${REDES[r.clave]}" target="_blank" rel="noopener">Abrir ↗</a>`
+      : `<span class="pendiente">Próximamente</span>`;
+    return `<li><div><b>${r.nombre}</b><small>${r.detalle}</small></div>${valor}</li>`;
+  }).join('');
+
+  cont.innerHTML = destacado + `<ul class="canales">${filas}</ul>`;
 }
