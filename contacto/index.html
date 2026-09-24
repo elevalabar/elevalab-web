@@ -2,65 +2,47 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Contacto — Eleva Lab</title>
-<meta name="description" content="Cómo contactar a Eleva Lab: Instagram @elevalab.ar, y próximamente GitHub, LinkedIn y CV.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:title" content="Contacto — Eleva Lab">
-<meta property="og:description" content="Cómo contactar a Eleva Lab.">
+<title>Contacto — ElevaLab</title>
+<meta name="description" content="Cómo contactar a ElevaLab: hoy, por Instagram @elevalab.ar. GitHub, LinkedIn y CV, próximamente.">
+<link rel="canonical" href="https://elevalabar.github.io/elevalab-web/contacto/index.html">
+<meta name="theme-color" content="#0d0e13">
+<meta property="og:title" content="Contacto — ElevaLab">
+<meta property="og:description" content="Cómo contactar a ElevaLab.">
 <meta property="og:type" content="website">
-<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://elevalabar.github.io/elevalab-web/contacto/index.html">
+<link rel="icon" type="image/png" href="../assets/img/logo-oscuro.png">
+<link rel="apple-touch-icon" href="../assets/img/logo-oscuro.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;500&display=swap">
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
-<header class="nav-sitio" id="nav-sitio"></header>
+<header class="nav" id="nav-sitio"></header>
 
-<main>
-  <section class="hero" style="padding-bottom:20px;">
-    <div class="contenedor">
-      <h1 style="font-size: clamp(32px, 5vw, 48px);">Contacto</h1>
-      <p class="descripcion" style="margin-top:16px;">
-        Eleva Lab todavía está en construcción. Hoy el canal más directo es Instagram.
-      </p>
-    </div>
+<main id="contenido">
+
+  <section class="contenedor pagina-cab">
+    <h1>Contanos en qué está trabajando tu negocio.</h1>
+    <p class="lead">ElevaLab todavía está en construcción. Hoy el canal más directo es Instagram.</p>
   </section>
 
-  <section class="envoltorio-seccion" style="padding-top:8px;">
-    <div class="contenedor">
-      <div class="panel-contacto" id="panel-contacto">
-        <!-- Se completa por JS desde REDES en site.js -->
-      </div>
-    </div>
+  <section class="contenedor" style="padding-bottom:clamp(64px,10vw,120px)">
+    <div id="panel-contacto"></div>
   </section>
+
 </main>
 
-<footer class="pie-sitio" id="pie-sitio"></footer>
+<footer class="pie" id="pie-sitio"></footer>
 
 <script src="../assets/js/site.js"></script>
 <script>
   renderNavSitio('contacto', '../');
   renderFooterSitio('../');
-
-  function filaContacto(nombre, detalle, url) {
-    const valor = url
-      ? `<a class="valor-canal" href="${url}" target="_blank" rel="noopener">Abrir</a>`
-      : `<span class="valor-canal pendiente">Próximamente</span>`;
-    return `
-      <div class="fila-contacto">
-        <div>
-          <div class="nombre-canal">${nombre}</div>
-          <div class="detalle-canal">${detalle}</div>
-        </div>
-        ${valor}
-      </div>
-    `;
-  }
-
-  document.getElementById('panel-contacto').innerHTML =
-    filaContacto('Instagram', '@elevalab.ar', REDES.instagram) +
-    filaContacto('GitHub', 'Repositorios de Eleva Lab', REDES.github) +
-    filaContacto('LinkedIn', 'Sebastián Quiven', REDES.linkedin) +
-    filaContacto('CV', 'Currículum de Sebastián Quiven', REDES.cv);
+  renderContactoSitio('panel-contacto');
 </script>
 </body>
 </html>
