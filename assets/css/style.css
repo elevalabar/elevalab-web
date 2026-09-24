@@ -237,22 +237,29 @@ h1, h2, h3 {
   .cadena li { grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1.3fr); gap: 32px; align-items: baseline; }
 }
 
-/* Sobre: foto de Sebastián (paso 01 de la cadena) */
-.persona-foto { position: relative; width: min(100%, 220px); margin: 8px 0 0; }
-.persona-foto::before { content: ''; position: absolute; left: -4px; top: -4px; z-index: 1; width: 8px; height: 8px; background: var(--color-primary); }
+/* Sobre: foto de Sebastián (paso 01). Círculo con anillo, eco del hero. */
+.persona-foto { --d: 180px; position: relative; width: var(--d); margin: 24px 0 0 12px; }
+.persona-foto::before {
+  content: ''; position: absolute; top: -12px; left: -12px;
+  width: calc(var(--d) + 24px); height: calc(var(--d) + 24px);
+  border: 1px solid var(--color-border); border-radius: 50%;
+}
+.persona-foto::after {
+  content: ''; position: absolute; width: 8px; height: 8px; background: var(--color-primary);
+  left: calc(50% + (var(--d) / 2 + 12px) * 0.7071 - 4px);
+  top: calc(var(--d) / 2 - (var(--d) / 2 + 12px) * 0.7071 - 4px);
+}
 .persona-foto img {
-  width: 100%; aspect-ratio: 5 / 6; object-fit: cover; object-position: 50% 35%;
+  display: block; width: 100%; height: auto; aspect-ratio: 1 / 1;
+  object-fit: cover; border-radius: 50%;
   filter: grayscale(1) contrast(1.05);
   background: var(--color-surface);
-  border: 1px solid var(--color-border); border-radius: 2px;
 }
-.cadena .persona-foto figcaption { margin-top: 10px; color: var(--color-faint); }
+.cadena .persona-foto figcaption { margin-top: 28px; color: var(--color-faint); }
 @media (min-width: 800px) {
   .cadena li.persona { align-items: start; }
-  .persona-foto { width: min(100%, 260px); margin-top: 24px; }
+  .persona-foto { --d: 220px; }
 }
-.filosofia { color: var(--color-muted); max-width: 56ch; margin-bottom: 32px; font-size: 17px; }
-.filosofia strong { color: var(--color-text); font-weight: 500; }
 
 /* Proyectos: entradas completas */
 .proyecto {
