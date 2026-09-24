@@ -56,15 +56,17 @@ const PROYECTOS = [
   {
     id: 'el-burdel',
     nombre: 'El Burdel',
-    categoria: 'Plataforma privada de minijuegos',
+    categoria: 'Plataforma modular de juegos y dinámicas',
     estado: 'en-vivo',
     pendiente: false,
-    descripcionBreve: 'Plataforma web privada de minijuegos para una comunidad cerrada, con acceso por registro y aprobación manual de un administrador.',
-    problema: 'Darle a una comunidad cerrada un espacio propio de juego, ranking y contenido diario, con acceso controlado.',
-    construido: 'Un dashboard privado con sesiones de juego en vivo (Taboo, Wordle, El Impostor, ¿Quién Soy?, El Millonario y Ruleta), ranking global, tests de personalidad grupal, noticias y tablón, galería de fotos por álbumes, reproductor de música y horóscopo diario y mensual, además de una landing pública y páginas legales.',
-    aporte: 'Diagnóstico y resolución de problemas de registro y autenticación, rediseño UX y modularización del panel de administración, desarrollo completo de los módulos de Tests y Horóscopo —este último automatizado con Apps Script y la API de Gemini—, mejoras del sistema de música, rediseño de la landing pública y desarrollo de la galería.',
+    descripcionBreve: 'El Burdel es una plataforma web privada de dinámicas y minijuegos para una comunidad cerrada, con usuarios, administración propia, sesiones en vivo, puntuación y contenido.',
+    problema: 'Darle a una comunidad un espacio propio para centralizar juego, participación, ranking y contenido, con acceso controlado y administración propia.',
+    construido: 'Un dashboard privado con sesiones de juego en vivo (Taboo, Wordle, El Impostor, ¿Quién Soy?, El Millonario y Ruleta), ranking global y tests de personalidad grupal, además de noticias, galería de fotos, reproductor de música y horóscopo diario y mensual. Se completa con un panel de administración modular, herramientas de control de usuarios y sesiones, landing pública y páginas legales.',
+    aporte: 'Diagnóstico y resolución de problemas de registro y autenticación, rediseño UX y modularización del panel de administración, desarrollo de los módulos de Tests y Horóscopo —este último automatizado con Google Apps Script y la API de Gemini—, mejoras del sistema de música, rediseño de la landing pública y desarrollo de la galería.',
+    potencial: 'El Burdel nació para una comunidad privada concreta, pero su combinación de usuarios, administración, dinámicas en vivo, puntuación, ranking y contenido funciona como una base adaptable a otro tipo de experiencias interactivas: eventos y cumpleaños, encuentros recreativos para grupos, sistemas de puntos y desafíos para gimnasios, dinámicas para clubes o comunidades, o experiencias para salones y otros espacios. Por ahora esto es potencial de la arquitectura, no un servicio que ElevaLab ofrezca hoy.',
     tecnologias: ['HTML5', 'CSS3', 'JavaScript (ES6)', 'Firebase Authentication', 'Firebase Realtime Database', 'Google Apps Script', 'Google Drive', 'Gemini API', 'GitHub Pages'],
-    url: 'https://elburdel.com.ar'
+    url: 'https://elburdel.com.ar',
+    textoEnlace: 'Visitar El Burdel ↗'
   },
   {
     id: 'yca',
@@ -128,7 +130,8 @@ function categoriaProyecto(p) {
 
 function enlaceProyecto(p) {
   if (p.url) {
-    return `<a class="enlace" href="${p.url}" target="_blank" rel="noopener">Ver proyecto ↗</a>`;
+    const texto = p.textoEnlace || 'Ver proyecto ↗';
+    return `<a class="enlace" href="${p.url}" target="_blank" rel="noopener">${texto}</a>`;
   }
   if (p.estado === 'interno') {
     return `<span class="sin-enlace">Herramienta interna, sin acceso público</span>`;
@@ -267,6 +270,9 @@ function renderListaProyectosCompleta(idContenedor) {
     const aporte = p.aporte
       ? `<div><dt>Mi aporte</dt><dd>${p.aporte}</dd></div>`
       : '';
+    const potencial = p.potencial
+      ? `<div><dt>Potencial de adaptación</dt><dd>${p.potencial}</dd></div>`
+      : '';
 
     const cuerpo = p.pendiente
       ? `<p class="pr-pend">Ficha en preparación. Este proyecto todavía no tiene descripción pública.</p>`
@@ -277,6 +283,7 @@ function renderListaProyectosCompleta(idContenedor) {
           <div><dt>Qué se construyó</dt><dd>${p.construido}</dd></div>
           <div><dt>Tecnologías</dt><dd>${tecnologias}</dd></div>
           ${aporte}
+          ${potencial}
         </dl>`;
 
     return `
