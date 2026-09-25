@@ -70,15 +70,18 @@ const PROYECTOS = [
   },
   {
     id: 'yca',
-    nombre: 'YCA',
-    categoria: 'Categoría a definir',
-    estado: 'prototipo',
-    pendiente: true,
-    descripcionBreve: 'Descripción pendiente de completar.',
-    problema: 'Contenido pendiente — completar con el problema u objetivo real del proyecto.',
-    construido: 'Contenido pendiente — completar con lo que efectivamente se construyó.',
-    tecnologias: [],
-    url: ''
+    nombre: 'YCA Cerámica',
+    categoria: 'Plataforma web y sistema de gestión para un taller de cerámica',
+    estado: 'en-vivo',
+    pendiente: false,
+    descripcionBreve: 'YCA Cerámica es el sitio de un taller de cerámica artesanal en Buenos Aires que combina un catálogo público con un sistema privado de gestión para administrar cursos, alumnos, inventario, pagos y producción.',
+    problema: 'Centralizar la gestión de un taller artesanal que necesitaba manejar catálogo, insumos, cursos, alumnos, pagos, documentación y seguimiento de horneados desde un mismo lugar, en vez de procesos dispersos.',
+    construido: 'Un sistema con una parte pública y un entorno privado de gestión: catálogo de piezas e insumos con filtros, catálogo de pastas cerámicas con códigos internos, cursos con inscripción y estados, y un área privada para alumnos. El panel de administración cubre inventario, galería y pagos, con generación de contratos y comprobantes en PDF, envío de emails a suscriptores, etiquetas con código QR y seguimiento de pedidos de horneado, además de calculadoras técnicas de yeso, engobes, cocción, contracción, absorción y costos.',
+    aporte: 'Desarrollo integral del sistema: la totalidad del frontend, el panel de administración, el panel contable, las calculadoras técnicas y de costos, el seguimiento de horneados mediante QR y el sistema de autenticación, además de la integración del frontend con Google Apps Script y las automatizaciones para PDFs, archivos y Google Drive. También mejoras posteriores como el catálogo de pastas con códigos, el historial de cálculos y las herramientas de comunicación con alumnos y suscriptores.',
+    potencial: 'YCA Cerámica nació para un taller artesanal concreto, pero su combinación de catálogo público, panel privado de gestión, administración de alumnos o clientes, inventario, pagos, documentos, automatizaciones y seguimiento de trabajos mediante estados funciona como una base adaptable a otras actividades: talleres y espacios de oficios, academias o centros de formación, estudios o profesionales que trabajan con turnos, alumnos o clientes, y emprendimientos que combinan catálogo con gestión interna. Por ahora esto es potencial de la arquitectura, no un servicio que ElevaLab ofrezca hoy.',
+    tecnologias: ['HTML5', 'CSS3', 'JavaScript (ES6)', 'Google Apps Script', 'Google Sheets', 'Google Drive', 'jsPDF', 'Códigos QR', 'GitHub Pages'],
+    url: 'https://ycaceramica.com.ar',
+    textoEnlace: 'Visitar YCA Cerámica ↗'
   },
   {
     id: 'bot-discord',
