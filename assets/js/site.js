@@ -39,6 +39,8 @@ const NAV = [
 // pendiente: true mientras el proyecto no tenga información real
 //            (el sitio muestra "Ficha en preparación" y no los textos de relleno).
 // url: dejar '' si no hay un enlace público real — el sitio NUNCA inventa una URL.
+// textoSinEnlace: mensaje opcional para cuando no hay url (ej. "Bot privado, sin acceso público").
+//                  Si no se define, el sitio usa el mensaje genérico según el estado.
 // tecnologias: dejar [] si todavía no está confirmado.
 const PROYECTOS = [
   {
@@ -106,6 +108,21 @@ const PROYECTOS = [
     construido: 'Una aplicación web con alta y ficha de comercios, cuestionarios de auditoría e inspección, un diagnóstico digital y un módulo de prospección desde datos de Google Maps.',
     tecnologias: ['Google Apps Script', 'Google Sheets', 'JavaScript'],
     url: ''
+  },
+  {
+    id: 'burdel-bot',
+    nombre: 'Burdel Bot',
+    categoria: 'Bot de automatización para una comunidad de Discord',
+    estado: 'en-vivo',
+    pendiente: false,
+    descripcionBreve: 'Burdel Bot es un bot privado de Discord que funciona 24/7 dentro de la comunidad de El Burdel, automatizando contenido, membresía y organización del servidor.',
+    problema: 'Automatizar tareas que antes requerían intervención manual dentro de una comunidad de Discord: compartir contenido de redes sociales, controlar la actividad de los miembros y evitar que el canal principal se volviera un historial interminable.',
+    construido: 'Un bot que detecta y procesa links de Instagram, TikTok, X/Twitter y YouTube para publicarlos dentro de Discord, gestiona automáticamente la membresía —cambiando el estado de usuarios inactivos, reincorporándolos si vuelven a participar y expulsándolos si la inactividad se mantiene— y archiva el canal principal cada mes, creando uno nuevo con los permisos correspondientes. Se completa con funciones sociales como cumpleaños, salas en vivo, roles y agenda deportiva diaria.',
+    aporte: 'Desarrollo del sistema de gestión de actividad y membresía, diseño de las reglas de inactividad, reincorporación y expulsión, implementación del archivado automático, migración y evolución de la infraestructura, integración y mantenimiento de los servicios externos, y resolución de incidentes reales en producción.',
+    potencial: 'Burdel Bot nació para una comunidad de Discord concreta, pero sus mecanismos de gestión de membresía, archivado y notificaciones funcionan como una base adaptable a otras comunidades privadas, clubes o grupos de socios que necesiten automatizar moderación, recordatorios o seguimiento de actividad. Por ahora esto es potencial de la arquitectura, no un servicio que ElevaLab ofrezca hoy.',
+    tecnologias: ['Node.js', 'discord.js v14', 'Discord API', 'ESPN', 'TheSportsDB', 'Cloudflare Tunnel', 'PM2', 'Termux (Android)'],
+    url: '',
+    textoSinEnlace: 'Bot privado, sin acceso público'
   }
 ];
 
@@ -135,6 +152,9 @@ function enlaceProyecto(p) {
   if (p.url) {
     const texto = p.textoEnlace || 'Ver proyecto ↗';
     return `<a class="enlace" href="${p.url}" target="_blank" rel="noopener">${texto}</a>`;
+  }
+  if (p.textoSinEnlace) {
+    return `<span class="sin-enlace">${p.textoSinEnlace}</span>`;
   }
   if (p.estado === 'interno') {
     return `<span class="sin-enlace">Herramienta interna, sin acceso público</span>`;
