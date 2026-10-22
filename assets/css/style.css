@@ -334,3 +334,47 @@ h1, h2, h3 {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
+
+/* ── Home comercial (etapa 1): bloque agregado, no modifica nada de lo anterior ── */
+
+/* Color tomado del logo. Reservado para la punta del trazo del hero: no usar como color decorativo. */
+:root { --color-cian: #07d8f3; }
+
+/* Etiqueta de sección (mono, índigo) y espaciados de sección que antes iban como estilo suelto en el HTML */
+.etiqueta { display: block; color: var(--color-primary); margin-bottom: 18px; }
+.sec-intro { margin-top: 20px; }
+.sec-titulo-espacio { margin-bottom: 40px; }
+
+/* Áreas de trabajo: número, y enlace "Ejemplo real" a un proyecto existente */
+.areas .num { display: block; color: var(--color-faint); margin-bottom: 8px; }
+.areas .ejemplo { display: inline-block; margin-top: 12px; color: var(--color-primary); font-size: 13px; line-height: 1.5; text-decoration: none; }
+.areas .ejemplo span:first-child { color: var(--color-faint); margin-right: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+.areas .ejemplo:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Plano: línea vertical que separa el rótulo de la sección de su contenido (solo con la clase .plano) */
+@media (min-width: 900px) {
+  .cabecera.plano > .areas { border-left: 1px solid var(--color-border); padding-left: 24px; margin-left: -24px; }
+}
+
+/* Cómo trabajamos: cuatro pasos */
+.pasos { margin-top: 8px; }
+.pasos li { display: grid; gap: 8px; align-content: start; padding: 24px 0; border-top: 1px solid var(--color-border); }
+.pasos .mono { color: var(--color-primary); }
+.pasos h3 { font-size: 21px; letter-spacing: -0.02em; line-height: 1.2; }
+.pasos p { color: var(--color-muted); }
+@media (min-width: 900px) {
+  .pasos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 32px; }
+}
+
+/* Contacto por correo (reutiliza .ig) y textos del cierre */
+.ig-correo .ig-nombre { font-size: clamp(1.45rem, 5.4vw, 3.4rem); }
+.cierre .secundario { margin-top: 24px; color: var(--color-muted); }
+.cierre .nota { margin-top: 40px; color: var(--color-faint); font-size: 14px; max-width: 60ch; }
+
+/* Pie: enlaces dentro de la línea inferior heredan el color del texto */
+.pie-base a { color: inherit; }
+
+/* Dibujo del hero: colores desde las variables, no desde valores sueltos en el HTML */
+.hv-borde { stroke: var(--color-border); }
+.hv-linea { stroke: var(--color-line); }
+.hv-marca { fill: var(--color-primary); }
