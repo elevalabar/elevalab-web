@@ -4,11 +4,17 @@
 // solo lugar, para no tener que tocar los archivos .html.
 // ─────────────────────────────────────────────
 
+// Contacto: único lugar donde se escribe. Lo leen el pie, la home y Contacto.
+const CONTACTO = {
+  correo: 'elevalab.ar@gmail.com',
+  instagram: { usuario: '@elevalab.ar', url: 'https://instagram.com/elevalab.ar' }
+};
+
 // Redes / enlaces externos.
 // Completar github, linkedin y cv apenas existan esas URLs.
 // Mientras estén vacíos ("") el sitio muestra "Próximamente".
 const REDES = {
-  instagram: 'https://instagram.com/elevalab.ar',
+  instagram: CONTACTO.instagram.url,
   github: '',
   linkedin: '',
   cv: ''
@@ -16,7 +22,7 @@ const REDES = {
 
 // Texto descriptivo de cada canal (se usa en Contacto).
 const REDES_INFO = [
-  { clave: 'instagram', nombre: 'Instagram', detalle: '@elevalab.ar' },
+  { clave: 'instagram', nombre: 'Instagram', detalle: CONTACTO.instagram.usuario },
   { clave: 'github', nombre: 'GitHub', detalle: 'Repositorios de ElevaLab' },
   { clave: 'linkedin', nombre: 'LinkedIn', detalle: 'Sebastián Quiven' },
   { clave: 'cv', nombre: 'CV', detalle: 'Currículum de Sebastián Quiven' }
@@ -24,6 +30,24 @@ const REDES_INFO = [
 
 // Logo (relativo a la raíz del sitio; se le antepone `base`).
 const LOGO = 'assets/img/logo-oscuro.png';
+
+// ── DATOS COMUNES ──
+// Áreas de trabajo de la home. Regla: cada "ejemplo" debe estar respaldado por la ficha del
+// proyecto indicado en PROYECTOS (campo "proyecto" = id). Si no hay ejemplo, no se muestra.
+const SERVICIOS = [
+  { nombre: 'Presencia digital',
+    descripcion: 'Ordenar y mejorar cómo se ve tu negocio en internet, para que sea más fácil entender qué ofrecés y cómo contactarte.',
+    ejemplo: null },
+  { nombre: 'Sitios web y páginas de presentación',
+    descripcion: 'Una página propia para presentar tu negocio y mostrar lo que ofrecés.',
+    ejemplo: { proyecto: 'yca', texto: 'Sitio y catálogo público de YCA Cerámica' } },
+  { nombre: 'Herramientas de gestión a medida',
+    descripcion: 'Sistemas para centralizar en un solo lugar tareas y datos que hoy están dispersos.',
+    ejemplo: { proyecto: 'yca', texto: 'Sistema de gestión de YCA Cerámica' } },
+  { nombre: 'Soluciones a medida y automatización',
+    descripcion: 'Cuando lo que necesitás no existe armado, se desarrolla a tu medida.',
+    ejemplo: { proyecto: 'burdel-bot', texto: 'Bot que automatiza tareas de una comunidad de Discord' } }
+];
 
 // Navegación principal.
 const NAV = [
@@ -134,6 +158,12 @@ const ETIQUETAS_ESTADO = {
 
 const ICONO_MENU = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>';
 
+// Proyectos a mostrar: con { soloReales: true } se omiten las fichas pendientes.
+function proyectosVisibles(opciones) {
+  const solo = opciones && opciones.soloReales;
+  return solo ? PROYECTOS.filter(p => !p.pendiente) : PROYECTOS;
+}
+
 // ── Helpers ──────────────────────────────────────────────────
 function indicadorEstado(estado) {
   const clave = ETIQUETAS_ESTADO[estado] ? estado : 'prototipo';
@@ -207,10 +237,10 @@ function renderFooterSitio(base) {
   const contenedor = document.getElementById('pie-sitio');
   if (!contenedor) return;
 
-  const redes = REDES_INFO.map(r => REDES[r.clave]
-    ? `<li><a href="${REDES[r.clave]}" target="_blank" rel="noopener">${r.nombre}</a></li>`
-    : `<li><span class="pendiente">${r.nombre}, próximamente</span></li>`
-  ).join('');
+  const redes = `<li><a href="mailto:${CONTACTO.correo}">Correo</a></li>` + REDES_INFO
+    .filter(r => REDES[r.clave])
+    .map(r => `<li><a href="${REDES[r.clave]}" target="_blank" rel="noopener">${r.nombre}</a></li>`)
+    .join('');
   const explorar = NAV.map(n => `<li><a href="${base}${n.ruta}">${n.texto}</a></li>`).join('');
 
   contenedor.innerHTML = `
@@ -235,18 +265,19 @@ function renderFooterSitio(base) {
       <div class="pie-base">
         <span>© ${new Date().getFullYear()} ElevaLab</span>
         <span>Un proyecto de Sebastián Quiven</span>
-        <span>Marca en construcción</span>
+        <span><a href="mailto:${CONTACTO.correo}">${CONTACTO.correo}</a></span>
       </div>
     </div>
   `;
 }
 
 // ── Franja de estado (home) — calculada desde PROYECTOS ──────
-function renderEstadoLab(idContenedor) {
+function renderEstadoLab(idContenedor, opciones) {
   const cont = document.getElementById(idContenedor);
   if (!cont) return;
 
-  const cuenta = e => PROYECTOS.filter(p => p.estado === e).length;
+  const lista = proyectosVisibles(opciones);
+  const cuenta = e => lista.filter(p => p.estado === e).length;
   const estados = Object.keys(ETIQUETAS_ESTADO)
     .filter(e => cuenta(e) > 0)
     .map(e => `<span class="estado ${e}"><i aria-hidden="true"></i>${ETIQUETAS_ESTADO[e]} <b>${cuenta(e)}</b></span>`)
@@ -254,7 +285,7 @@ function renderEstadoLab(idContenedor) {
 
   cont.innerHTML = `
     <div class="contenedor">
-      <span class="mono">${PROYECTOS.length} proyectos registrados</span>
+      <span class="mono">${lista.length} proyectos registrados</span>
       ${estados}
     </div>
   `;
@@ -262,12 +293,12 @@ function renderEstadoLab(idContenedor) {
 
 // ── Índice de proyectos (home y arriba de /proyectos/) ───────
 // prefijo: '' en /proyectos/ (ancla local) o 'proyectos/index.html' desde la home.
-function renderIndiceProyectos(idContenedor, prefijo) {
+function renderIndiceProyectos(idContenedor, prefijo, opciones) {
   const cont = document.getElementById(idContenedor);
   if (!cont) return;
   prefijo = prefijo || '';
 
-  cont.innerHTML = PROYECTOS.map((p, i) => `
+  cont.innerHTML = proyectosVisibles(opciones).map((p, i) => `
     <li>
       <a class="fila-proy" href="${prefijo}#${p.id}">
         <span class="fp-num mono">${numeroProyecto(i)}</span>
@@ -348,4 +379,31 @@ function renderContactoSitio(idContenedor) {
   }).join('');
 
   cont.innerHTML = destacado + `<ul class="canales">${filas}</ul>`;
+}
+
+// Áreas de trabajo (home). prefijoProyectos: ruta hacia proyectos/index.html
+function renderServicios(idContenedor, prefijoProyectos) {
+  const cont = document.getElementById(idContenedor);
+  if (!cont) return;
+  cont.innerHTML = SERVICIOS.map((s, i) => `
+    <li>
+      <h3><span class="num mono">${String(i + 1).padStart(2, '0')}</span>${s.nombre}</h3>
+      <div>
+        <p>${s.descripcion}</p>
+        ${s.ejemplo ? `<a class="ejemplo mono" href="${prefijoProyectos}#${s.ejemplo.proyecto}"><span>Ejemplo real</span> ${s.ejemplo.texto} <span aria-hidden="true">↗</span></a>` : ''}
+      </div>
+    </li>`).join('');
+}
+
+// Bloque de contacto de la home: lee CONTACTO.
+function renderContactoHome(idContenedor) {
+  const cont = document.getElementById(idContenedor);
+  if (!cont) return;
+  cont.innerHTML = `
+    <a class="ig ig-correo" href="mailto:${CONTACTO.correo}?subject=Consulta%20desde%20la%20web%20de%20ElevaLab">
+      <span class="mono">Escribinos por correo</span>
+      <span class="ig-nombre">${CONTACTO.correo}</span>
+      <span class="ig-flecha" aria-hidden="true">↗</span>
+    </a>
+    <p class="secundario">También por Instagram: <a class="enlace" href="${CONTACTO.instagram.url}" target="_blank" rel="noopener">${CONTACTO.instagram.usuario} ↗</a></p>`;
 }
