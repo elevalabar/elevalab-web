@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ElevaLab — Tecnología para que los negocios avancen</title>
-<meta name="description" content="ElevaLab es el proyecto profesional de Sebastián Quiven: herramientas y soluciones tecnológicas para negocios. Conocé los proyectos reales que se están construyendo.">
+<title>ElevaLab — Presencia digital y herramientas a medida para pequeños negocios</title>
+<meta name="description" content="Ayudamos a pequeños negocios y profesionales a mejorar su presencia digital y a trabajar mejor con herramientas hechas a su medida. Escribinos y conversamos.">
 <link rel="canonical" href="https://elevalabar.github.io/elevalab-web/index.html">
 <meta name="theme-color" content="#0d0e13">
-<meta property="og:title" content="ElevaLab — Tecnología para que los negocios avancen">
-<meta property="og:description" content="Herramientas y soluciones tecnológicas para negocios, construidas por Sebastián Quiven.">
+<meta property="og:title" content="ElevaLab — Presencia digital y herramientas a medida">
+<meta property="og:description" content="Ayudamos a pequeños negocios y profesionales a mejorar su presencia digital y a trabajar mejor con herramientas hechas a su medida.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
 <meta property="og:url" content="https://elevalabar.github.io/elevalab-web/index.html">
@@ -29,21 +29,29 @@
     <div class="hero-rejilla" aria-hidden="true"></div>
     <div class="contenedor hero-cuerpo">
       <div class="hero-texto">
-        <p class="mono hero-sup">Estudio tecnológico independiente</p>
-        <h1>Tecnología para que los negocios avancen.</h1>
-        <p class="lead">ElevaLab es el proyecto profesional de Sebastián Quiven: herramientas y soluciones tecnológicas para negocios reales.</p>
+        <p class="mono hero-sup">Presencia digital · Herramientas a medida</p>
+        <h1>Tecnología a la medida de tu negocio.</h1>
+        <p class="lead">Ayudamos a pequeños negocios y profesionales a mejorar su presencia digital y a trabajar mejor con herramientas hechas a su medida.</p>
         <div class="botones">
-          <a class="btn btn-primario" href="proyectos/index.html">Ver proyectos</a>
-          <a class="btn" href="sobre/index.html">Conocer ElevaLab</a>
+          <a class="btn btn-primario" href="#contacto">Contanos qué necesitás</a>
+          <a class="btn" href="#soluciones">En qué podemos ayudarte</a>
         </div>
       </div>
       <div class="hero-visual">
         <svg viewBox="0 0 400 400" fill="none" aria-hidden="true" focusable="false">
-          <circle cx="200" cy="200" r="199" stroke="#252733"/>
-          <circle cx="200" cy="200" r="140" stroke="#3b3e54" stroke-dasharray="2 7"/>
-          <path d="M0 200H400M200 0V400" stroke="#252733"/>
-          <path class="trazo" d="M14 386L386 14" pathLength="1" stroke="#7482ff" stroke-width="1.5"/>
-          <rect x="10" y="382" width="8" height="8" fill="#7482ff"/>
+          <defs>
+            <linearGradient id="subida" gradientUnits="userSpaceOnUse" x1="14" y1="386" x2="386" y2="14">
+              <stop offset="0" stop-color="#7482ff"/>
+              <stop offset="0.6" stop-color="#7482ff"/>
+              <stop offset="1" stop-color="#07d8f3"/>
+            </linearGradient>
+          </defs>
+          <circle class="hv-borde" cx="200" cy="200" r="199"/>
+          <circle class="hv-linea" cx="200" cy="200" r="140" stroke-dasharray="2 7"/>
+          <path class="hv-borde" d="M0 200H400M200 0V400"/>
+          <path class="trazo" d="M14 386L386 14" pathLength="1" stroke="url(#subida)" stroke-width="1.5"/>
+          <path d="M366 14H386V34" stroke="#07d8f3" stroke-width="1.5"/>
+          <rect class="hv-marca" x="10" y="382" width="8" height="8"/>
         </svg>
         <img src="assets/img/logo-oscuro.png" alt="Logo de ElevaLab" width="500" height="500">
       </div>
@@ -52,50 +60,88 @@
   </section>
 
   <section class="seccion">
-    <div class="contenedor cabecera">
-      <h2>En qué estamos trabajando</h2>
+    <div class="contenedor cabecera plano">
       <div>
-        <p class="intro">Todavía no ofrecemos un catálogo cerrado de servicios. Estas son las áreas alrededor de las que construimos proyectos hoy.</p>
-        <ul class="areas">
-          <li>
-            <h3>Presencia digital</h3>
-            <p>Ayudar a que un negocio se pueda encontrar y entender bien en internet.</p>
-          </li>
-          <li>
-            <h3>Crecimiento de negocios</h3>
-            <p>Entender dónde están las oportunidades reales de un negocio para crecer.</p>
-          </li>
-          <li>
-            <h3>Herramientas digitales</h3>
-            <p>Construir herramientas a medida cuando una planilla o un proceso manual ya no alcanza.</p>
-          </li>
-          <li>
-            <h3>Automatización</h3>
-            <p>Sacar de en medio las tareas repetitivas para que quede tiempo para lo importante.</p>
-          </li>
-          <li>
-            <h3>Tecnología aplicada</h3>
-            <p>Usar tecnología de forma concreta, no como palabra de moda.</p>
-          </li>
-        </ul>
+        <span class="mono etiqueta">01 · Para quién</span>
+        <h2>Para negocios que quieren trabajar mejor.</h2>
       </div>
+      <ul class="areas">
+        <li>
+          <h3>Presencia digital desordenada o inexistente</h3>
+          <p>Cuando alguien busca tu negocio en internet y no encuentra información clara, completa o actual.</p>
+        </li>
+        <li>
+          <h3>Trabajo manual que ya no alcanza</h3>
+          <p>Planillas, mensajes y papeles sueltos que cuesta mantener ordenados a medida que el negocio crece.</p>
+        </li>
+        <li>
+          <h3>Herramientas que no se ajustan a tu forma de trabajar</h3>
+          <p>Programas pensados para otros rubros, con funciones que sobran y otras que faltan.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="seccion" id="soluciones">
+    <div class="contenedor cabecera plano">
+      <div>
+        <span class="mono etiqueta">02 · En qué podemos ayudarte</span>
+        <h2>Soluciones según lo que tu negocio necesita.</h2>
+        <p class="intro sec-intro">No trabajamos con paquetes cerrados: cada solución se define según tu caso.</p>
+      </div>
+      <ul class="areas" id="lista-servicios"></ul>
     </div>
   </section>
 
   <section class="seccion">
     <div class="contenedor">
-      <h2>Proyectos</h2>
-      <p class="intro" style="margin-top:20px">Esto es lo que ya construimos. Algunos están en vivo, otros son prototipos o herramientas de uso interno.</p>
+      <span class="mono etiqueta">03 · Cómo trabajamos</span>
+      <h2 class="sec-titulo-espacio">Primero conversamos, después proponemos.</h2>
+      <ol class="pasos">
+        <li>
+          <span class="mono">Paso 01</span>
+          <h3>Conversamos</h3>
+          <p>Nos contás cómo funciona tu negocio y qué te gustaría mejorar.</p>
+        </li>
+        <li>
+          <span class="mono">Paso 02</span>
+          <h3>Proponemos</h3>
+          <p>Te presentamos una propuesta concreta, con lo que incluye y lo que no.</p>
+        </li>
+        <li>
+          <span class="mono">Paso 03</span>
+          <h3>Construimos y revisamos</h3>
+          <p>Te mostramos avances para que puedas revisarlos y pedir ajustes.</p>
+        </li>
+        <li>
+          <span class="mono">Paso 04</span>
+          <h3>Ponemos en marcha</h3>
+          <p>Dejamos la solución funcionando y la ajustamos con vos.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor">
+      <span class="mono etiqueta">04 · Lo que ya construimos</span>
+      <h2>Proyectos reales.</h2>
+      <p class="intro sec-intro">Esto existe y funciona hoy. Algunos están en vivo; otros son privados o de uso interno.</p>
       <ul class="indice" id="indice-home"></ul>
       <a class="btn" href="proyectos/index.html">Ver todos los proyectos</a>
     </div>
   </section>
 
-  <section class="seccion cierre">
+  <section class="seccion cierre" id="contacto">
     <div class="contenedor">
-      <h2>¿Tenés un negocio y querés contarnos en qué estás trabajando?</h2>
-      <p>ElevaLab está en construcción. La forma más directa de contactarnos hoy es por Instagram.</p>
-      <a class="btn btn-primario" href="contacto/index.html">Ir a contacto</a>
+      <span class="mono etiqueta">05 · Contacto</span>
+      <h2>Contanos qué necesita tu negocio.</h2>
+      <p>No hace falta que tengas todo claro. Escribinos qué hace tu negocio y qué te gustaría mejorar, y lo conversamos.</p>
+      <div id="contacto-home"></div>
+      <noscript>
+        <p class="secundario">Escribinos a elevalab.ar@gmail.com o por Instagram: @elevalab.ar</p>
+      </noscript>
+      <p class="nota">ElevaLab es un proyecto independiente impulsado por Sebastián Quiven. <a class="enlace" href="sobre/index.html">Conocer más</a></p>
     </div>
   </section>
 
@@ -107,8 +153,10 @@
 <script>
   renderNavSitio('inicio', '');
   renderFooterSitio('');
-  renderEstadoLab('estado-lab');
-  renderIndiceProyectos('indice-home', 'proyectos/index.html');
+  renderEstadoLab('estado-lab', { soloReales: true });
+  renderServicios('lista-servicios', 'proyectos/index.html');
+  renderIndiceProyectos('indice-home', 'proyectos/index.html', { soloReales: true });
+  renderContactoHome('contacto-home');
 </script>
 </body>
 </html>
