@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://script.google.com https://script.googleusercontent.com; base-uri 'none'; form-action 'none'">
+<meta name="theme-color" content="#0b0c10">
+<title>Contanos sobre tu negocio · ElevaLab</title>
+<link rel="icon" type="image/png" href="../assets/img/logo-oscuro.png">
+<link rel="stylesheet" href="solicitar.css">
+</head>
+<body>
+
+<div class="banner-borrador oculto" id="banner-borrador" role="note"></div>
+
+<!-- Cargando -->
+<div class="pantalla-centro" id="pantalla-cargando">
+  <div class="spinner" aria-hidden="true"></div>
+  <p class="muted" role="status">Cargando…</p>
+</div>
+
+<!-- Mensajes (enlace no disponible, ya enviado, errores) -->
+<div class="intro-pantalla oculto" id="pantalla-mensaje">
+  <img src="../assets/img/logo-oscuro.png" alt="ElevaLab" class="intro-logo" width="40" height="40">
+  <h1 id="mensaje-titulo"></h1>
+  <p id="mensaje-texto"></p>
+</div>
+
+<!-- Inicio -->
+<div class="intro-pantalla oculto" id="pantalla-intro">
+  <img src="../assets/img/logo-oscuro.png" alt="ElevaLab" class="intro-logo" width="40" height="40">
+  <h1 id="intro-titulo"></h1>
+  <p id="intro-texto"></p>
+  <div class="intro-pills">
+    <span class="intro-pill" id="intro-pill-1"></span>
+    <span class="intro-pill" id="intro-pill-2"></span>
+    <span class="intro-pill" id="intro-pill-3"></span>
+  </div>
+  <button type="button" class="btn btn-primary btn-empezar" id="btn-empezar"></button>
+  <p class="enlace-privacidad"><a id="intro-privacidad" href="../privacidad/" target="_blank" rel="noopener"></a></p>
+</div>
+
+<!-- Formulario por bloques -->
+<div class="app-wizard oculto" id="wizard">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <img src="../assets/img/logo-oscuro.png" alt="" width="26" height="26">
+      <span>ELEVALAB</span>
+    </div>
+    <div class="sidebar-progreso">
+      <div class="barra-avance"><div class="relleno" id="relleno"></div></div>
+      <p class="progreso-texto" id="progreso-texto"></p>
+    </div>
+    <nav class="sidebar-bloques" id="sidebar-bloques" aria-label="Progreso por bloque"></nav>
+    <div class="sidebar-nota" id="sidebar-nota"></div>
+  </aside>
+
+  <main class="contenido-principal">
+    <div class="topbar-mobile">
+      <img src="../assets/img/logo-oscuro.png" alt="" width="22" height="22">
+      <span>ELEVALAB</span>
+      <div class="barra-avance"><div class="relleno" id="relleno-mobile"></div></div>
+    </div>
+
+    <div class="contenido-principal-inner">
+      <header class="encabezado-bloque">
+        <h1 id="titulo-bloque" tabindex="-1"></h1>
+        <p class="subtitulo-bloque" id="subtitulo-bloque"></p>
+      </header>
+
+      <div class="mensaje" id="mensaje" role="alert" aria-live="assertive"></div>
+      <div id="contenido-bloque"></div>
+
+      <div class="nav-wizard">
+        <button type="button" class="btn btn-grande" id="btn-anterior"></button>
+        <button type="button" class="btn btn-primary btn-grande" id="btn-siguiente"></button>
+      </div>
+      <p class="nota-envio oculto" id="nota-envio"></p>
+      <p class="guardar-salir"><button type="button" class="btn-texto" id="btn-guardar"></button></p>
+    </div>
+  </main>
+</div>
+
+<!-- Final -->
+<div class="intro-pantalla oculto" id="pantalla-final">
+  <img src="../assets/img/logo-oscuro.png" alt="ElevaLab" class="intro-logo" width="40" height="40">
+  <h1 id="final-titulo"></h1>
+  <p id="final-texto"></p>
+</div>
+
+<div class="overlay-procesando" id="overlay" role="status" aria-live="polite">
+  <div class="caja">
+    <div class="spinner" aria-hidden="true"></div>
+    <h3 id="overlay-titulo">Guardando…</h3>
+    <p>No cierres esta página.</p>
+  </div>
+</div>
+
+<script src="solicitar.js"></script>
+</body>
+</html>
