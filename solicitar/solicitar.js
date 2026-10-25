@@ -4,7 +4,7 @@
   'use strict';
 
   // Dirección de la aplicación web del Apps Script (termina en /exec). Se pega una sola vez.
-  const API_URL = 'PEGAR_AQUI_LA_DIRECCION_EXEC_DEL_SCRIPT';
+  const API_URL = 'https://script.google.com/macros/s/AKfycbxKzJlhH59wylg9LX7xW_WbaR_eoOMd0ZT5KQa8pGOj80CPqpS8twSopnyPe0sU-oSdkw/exec';
   const PRIVACIDAD_URL = '../privacidad/';
   const TIMEOUT_MS = 30000;
 
