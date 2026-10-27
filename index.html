@@ -32,8 +32,8 @@
         <h1>Tu negocio también puede <em>crecer.</em></h1>
         <p class="lead">Ayudamos a pequeños negocios y profesionales a mejorar su presencia digital y a trabajar mejor con herramientas hechas a su medida.</p>
         <div class="botones">
-          <a class="btn btn-oro" href="proyectos/index.html">Ver proyectos <span class="flecha" aria-hidden="true">→</span></a>
-          <a class="btn btn-texto" href="sobre/index.html">Conocé más sobre nosotros <span class="flecha" aria-hidden="true">→</span></a>
+          <a class="btn btn-oro" id="btn-hero-diagnostico" href="#">Hacer el diagnóstico gratis <span class="flecha" aria-hidden="true">→</span></a>
+          <a class="btn btn-texto" href="contacto/index.html">Escribinos <span class="flecha" aria-hidden="true">→</span></a>
         </div>
       </div>
       <div class="hero-visual">
@@ -51,6 +51,16 @@
         </svg>
         <picture><source srcset="assets/img/logo-dorado-160.webp" type="image/webp"><img class="medalla" src="assets/img/logo-dorado-160.png" alt="Logo de ElevaLab" width="160" height="160" fetchpriority="high"></picture>
       </div>
+    </div>
+  </section>
+
+  <section class="seccion sec-carbon" id="empezar">
+    <div class="contenedor">
+      <span class="etiqueta">Empezá por acá</span>
+      <h2>¿Qué necesitás hoy?</h2>
+      <p class="intro">Elegí lo que más se parece a tu caso.</p>
+      <ul class="caminos" id="lista-caminos"></ul>
+      <noscript><p class="secundario">Escribinos a elevalab.ar@gmail.com y contanos qué necesita tu negocio.</p></noscript>
     </div>
   </section>
 
@@ -95,15 +105,6 @@
       </div>
       <p class="intro">Esto existe y funciona hoy. Algunos están en vivo; otros son privados o de uso interno.</p>
       <ul class="tarjetas" id="tarjetas-home"></ul>
-
-      <div class="banner">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 11l1.5 1.5L13 10M9 16.5l1.5 1.5L13 15.5M15 11h1M15 16h1"/></svg></div>
-        <div>
-          <h3>¿Querés saber cómo está tu negocio?</h3>
-          <p>Completá nuestro diagnóstico gratuito: recibís un diagnóstico simple sobre tu presencia digital y organización, con ideas concretas para mejorar. Lleva de 5 a 8 minutos.</p>
-        </div>
-        <a class="btn btn-oro" id="btn-diagnostico" href="#">Hacer diagnóstico <span class="flecha" aria-hidden="true">→</span></a>
-      </div>
     </div>
   </section>
 
@@ -117,20 +118,6 @@
         <li><h3>Construimos y revisamos</h3><p>Te mostramos avances para que puedas revisarlos y pedir ajustes.</p></li>
         <li><h3>Ponemos en marcha</h3><p>Dejamos la solución funcionando y la ajustamos con vos.</p></li>
       </ol>
-    </div>
-  </section>
-
-  <section class="seccion sec-claro" style="padding-top:0">
-    <div class="contenedor">
-      <div class="sobre-t">
-        <figure><picture><source srcset="assets/img/profile-pic-520.webp" type="image/webp"><img src="assets/img/profile-pic.png" alt="Retrato en blanco y negro de Sebastián Quiven" width="612" height="612" loading="lazy" decoding="async"></picture></figure>
-        <div>
-          <span class="etiqueta">Sobre ElevaLab</span>
-          <h2>Detrás de ElevaLab hay una persona.</h2>
-          <p>ElevaLab es un proyecto independiente impulsado por Sebastián Quiven: reúne bajo un mismo nombre las herramientas y soluciones que desarrolla para negocios.</p>
-          <a class="btn btn-oscuro" href="sobre/index.html">Conocé más sobre mí <span class="flecha" aria-hidden="true">→</span></a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -152,10 +139,11 @@
 <script>
   renderNavSitio('inicio', '');
   renderFooterSitio('');
+  renderCaminos('lista-caminos');
   renderServicios('lista-servicios', 'proyectos/index.html');
   renderProyectosDestacados('tarjetas-home', 'proyectos/index.html', '');
   renderContactoHome('contacto-home');
-  document.getElementById('btn-diagnostico').href = DIAGNOSTICO_URL;
+  document.getElementById('btn-hero-diagnostico').href = DIAGNOSTICO_URL;
 </script>
 </body>
 </html>
