@@ -114,6 +114,18 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; }
 .sec-claro .etiqueta { color: var(--oro-texto); }
 @media (min-width: 900px) { .seccion { padding: 88px 0; } }
 
+/* Empezá por acá */
+.caminos { display: grid; gap: 16px; margin-top: 28px; }
+.caminos > li { display: flex; }
+.camino { display: flex; flex-direction: column; gap: 10px; width: 100%; padding: 24px 22px; border: 1px solid var(--linea); border-radius: 18px; background: var(--negro); text-decoration: none; color: inherit; transition: border-color .15s, transform .15s, background .15s; }
+.camino:hover { border-color: var(--oro); transform: translateY(-3px); }
+.camino.destacado { border-color: var(--oro); background: rgba(242,193,78,.06); }
+.camino .n { font-size: 12px; font-weight: 700; letter-spacing: .14em; color: var(--oro); }
+.camino h3 { font-size: 1.25rem; letter-spacing: -0.02em; line-height: 1.2; color: #fff; }
+.camino p { color: var(--apagado); font-size: 15.5px; }
+.camino .ir { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: auto; padding-top: 6px; font-weight: 700; font-size: 15px; color: var(--oro); }
+@media (min-width: 800px) { .caminos { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+
 /* Para quién */
 .problemas { display: grid; gap: 0; margin-top: 28px; }
 .problemas li { padding: 20px 0; border-top: 1px solid var(--linea); }
