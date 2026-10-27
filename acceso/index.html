@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso al sistema — ElevaLab</title>
+<meta name="description" content="Acceso al sistema de gestión de ElevaLab, de uso interno.">
+<link rel="canonical" href="https://elevalab.com.ar/acceso/index.html">
+<meta name="theme-color" content="#0b0b0d">
+<meta property="og:title" content="Acceso al sistema — ElevaLab">
+<meta property="og:description" content="Acceso al sistema de gestión de ElevaLab, de uso interno.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://elevalab.com.ar/acceso/index.html">
+<link rel="icon" type="image/png" href="../assets/img/logo-dorado-160.png">
+<link rel="apple-touch-icon" href="../assets/img/logo-dorado.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="nav" id="nav-sitio"></header>
+
+<main id="contenido">
+
+  <section class="pagina-cab">
+    <span class="etiqueta">Sistema</span>
+    <h1>Acceso al sistema de gestión.</h1>
+    <p class="lead">Herramienta interna de ElevaLab para relevar y dar seguimiento a comercios.</p>
+  </section>
+
+  <section class="seccion sec-oscura" style="padding-top:8px">
+    <div class="contenedor">
+      <div class="acceso-caja">
+        <h2>Ingresar</h2>
+        <p>El sistema es de uso interno y pide usuario y contraseña. Esta página solo te lleva al ingreso: no guarda ni muestra ningún dato del sistema.</p>
+        <a class="btn btn-oro" id="btn-ingresar" href="#">Ingresar al sistema <span class="flecha" aria-hidden="true">→</span></a>
+      </div>
+      <p class="secundario" style="max-width:34em">¿Sos dueño o dueña de un negocio? No necesitás ingresar acá: podés hacer el <a class="enlace" id="enlace-diagnostico" href="#">diagnóstico gratuito</a> o <a class="enlace" href="../contacto/index.html">escribirnos</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie" id="pie-sitio"></footer>
+
+<script src="../assets/js/site.js"></script>
+<script>
+  renderNavSitio('acceso', '../');
+  renderFooterSitio('../');
+  document.getElementById('btn-ingresar').href = ACCESO_SISTEMA;
+  document.getElementById('enlace-diagnostico').href = DIAGNOSTICO_URL;
+</script>
+</body>
+</html>
