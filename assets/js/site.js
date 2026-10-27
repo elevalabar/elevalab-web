@@ -11,28 +11,24 @@ const CONTACTO = {
 };
 
 // Redes / enlaces externos.
-// Completar github, linkedin y cv apenas existan esas URLs.
-// Mientras estén vacíos ("") el sitio muestra "Próximamente".
+// Cuando exista el enlace de WhatsApp (por ejemplo https://wa.me/54911XXXXXXXX), pegarlo en "whatsapp".
+// Mientras esté vacío ("") el sitio muestra "Próximamente" y no lo incluye en el pie.
 const REDES = {
   instagram: CONTACTO.instagram.url,
-  github: '',
-  linkedin: '',
-  cv: ''
+  whatsapp: ''
 };
 
 // Texto descriptivo de cada canal (se usa en Contacto).
 const REDES_INFO = [
   { clave: 'instagram', nombre: 'Instagram', detalle: CONTACTO.instagram.usuario },
-  { clave: 'github', nombre: 'GitHub', detalle: 'Repositorios de ElevaLab' },
-  { clave: 'linkedin', nombre: 'LinkedIn', detalle: 'Sebastián Quiven' },
-  { clave: 'cv', nombre: 'CV', detalle: 'Currículum de Sebastián Quiven' }
+  { clave: 'whatsapp', nombre: 'WhatsApp', detalle: 'Mensajes directos' }
 ];
 
 // Sistema de gestión de comercios (panel privado) y diagnóstico gratuito.
 // ÚNICO lugar donde se escribe la dirección. Si el sistema cambia de dirección
 // (por ejemplo a admin.elevalab.com.ar), se cambia SOLO esta línea.
 // Debe terminar en "/". El panel pide usuario y contraseña; esta web no guarda ni muestra datos del panel.
-const SISTEMA_BASE = 'https://elevalabar.github.io/gestion-comercios/';
+const SISTEMA_BASE = 'https://admin.elevalab.com.ar/';
 const ACCESO_SISTEMA = SISTEMA_BASE + 'index.html';
 const DIAGNOSTICO_URL = SISTEMA_BASE + 'diagnostico/index.html';
 
@@ -68,10 +64,33 @@ const ICONOS_SERVICIO = [
 // Navegación principal. "ruta" = página interna; "url" = enlace externo.
 const NAV = [
   { id: 'inicio', texto: 'Inicio', ruta: 'index.html' },
-  { id: 'sobre', texto: 'Sobre', ruta: 'sobre/index.html' },
   { id: 'proyectos', texto: 'Proyectos', ruta: 'proyectos/index.html' },
   { id: 'diagnostico', texto: 'Diagnóstico', url: DIAGNOSTICO_URL },
   { id: 'contacto', texto: 'Contacto', ruta: 'contacto/index.html' }
+];
+
+// Enlaces que aparecen SOLO en el pie de página (no en la barra de arriba).
+const PIE_EXTRA = [
+  { id: 'sobre', texto: 'Sobre ElevaLab', ruta: 'sobre/index.html' }
+];
+
+// "Empezá por acá" (home): los tres caminos para que el cliente sepa rápido qué puede hacer.
+// "enlace: 'diagnostico'" lleva al diagnóstico; "asunto" abre un correo con ese asunto.
+const CAMINOS = [
+  { n: '01', destacado: true, enlace: 'diagnostico',
+    titulo: 'Quiero saber cómo está mi negocio',
+    texto: 'Hacé el diagnóstico gratuito: lleva de 5 a 8 minutos y recibís ideas concretas para mejorar tu presencia digital y tu organización.',
+    accion: 'Hacer el diagnóstico' },
+  { n: '02',
+    asunto: 'Quiero una página para mi negocio',
+    titulo: 'Quiero una página para mi negocio',
+    texto: 'Escribinos y te pasamos un cuestionario corto para entender qué necesitás.',
+    accion: 'Escribirnos' },
+  { n: '03',
+    asunto: 'No sé qué necesito',
+    titulo: 'No sé qué necesito',
+    texto: 'Contanos qué hace tu negocio y qué te gustaría mejorar, y lo conversamos.',
+    accion: 'Contanos tu caso' }
 ];
 
 // Catálogo de proyectos. Fuente única para la home y /proyectos/.
@@ -281,7 +300,7 @@ function renderFooterSitio(base) {
     .filter(r => REDES[r.clave])
     .map(r => `<li><a href="${REDES[r.clave]}" target="_blank" rel="noopener">${r.nombre}</a></li>`)
     .join('');
-  const explorar = NAV.map(n => n.url
+  const explorar = NAV.concat(PIE_EXTRA).map(n => n.url
     ? `<li><a href="${n.url}">${n.texto}</a></li>`
     : `<li><a href="${base}${n.ruta}">${n.texto}</a></li>`).join('');
 
@@ -314,6 +333,26 @@ function renderFooterSitio(base) {
       </div>
     </div>
   `;
+}
+
+// ── Empezá por acá (home) ────────────────────────────────────
+function renderCaminos(idContenedor) {
+  const cont = document.getElementById(idContenedor);
+  if (!cont) return;
+  cont.innerHTML = CAMINOS.map(c => {
+    const href = c.enlace === 'diagnostico'
+      ? DIAGNOSTICO_URL
+      : `mailto:${CONTACTO.correo}?subject=${encodeURIComponent(c.asunto)}`;
+    return `
+    <li>
+      <a class="camino${c.destacado ? ' destacado' : ''}" href="${href}">
+        <span class="n" aria-hidden="true">${c.n}</span>
+        <h3>${c.titulo}</h3>
+        <p>${c.texto}</p>
+        <span class="ir">${c.accion} <span aria-hidden="true">→</span></span>
+      </a>
+    </li>`;
+  }).join('');
 }
 
 // ── Soluciones (home) ────────────────────────────────────────
