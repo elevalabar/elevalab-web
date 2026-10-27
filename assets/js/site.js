@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────
 // ELEVALAB — datos y componentes compartidos del sitio público.
-// Todo lo editable (redes, proyectos, navegación) vive ACÁ, en un
-// solo lugar, para no tener que tocar los archivos .html.
+// Todo lo editable (redes, proyectos, navegación, acceso al sistema) vive ACÁ,
+// en un solo lugar, para no tener que tocar los archivos .html.
 // ─────────────────────────────────────────────
 
 // Contacto: único lugar donde se escribe. Lo leen el pie, la home y Contacto.
@@ -28,8 +28,17 @@ const REDES_INFO = [
   { clave: 'cv', nombre: 'CV', detalle: 'Currículum de Sebastián Quiven' }
 ];
 
+// Sistema de gestión de comercios (panel privado) y diagnóstico gratuito.
+// ÚNICO lugar donde se escribe la dirección. Si el sistema cambia de dirección
+// (por ejemplo a admin.elevalab.com.ar), se cambia SOLO esta línea.
+// Debe terminar en "/". El panel pide usuario y contraseña; esta web no guarda ni muestra datos del panel.
+const SISTEMA_BASE = 'https://elevalabar.github.io/gestion-comercios/';
+const ACCESO_SISTEMA = SISTEMA_BASE + 'index.html';
+const DIAGNOSTICO_URL = SISTEMA_BASE + 'diagnostico/index.html';
+
 // Logo (relativo a la raíz del sitio; se le antepone `base`).
-const LOGO = 'assets/img/logo-oscuro.png';
+const LOGO = 'assets/img/logo-dorado-160.webp';
+const LOGO_PNG = 'assets/img/logo-dorado-160.png';
 
 // ── DATOS COMUNES ──
 // Áreas de trabajo de la home. Regla: cada "ejemplo" debe estar respaldado por la ficha del
@@ -49,11 +58,19 @@ const SERVICIOS = [
     ejemplo: { proyecto: 'burdel-bot', texto: 'Bot que automatiza tareas de una comunidad de Discord' } }
 ];
 
-// Navegación principal.
+const ICONOS_SERVICIO = [
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.6"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="12" rx="1.6"/><path d="M2 19.5h20"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M18.5 5.5l-1.8 1.8M7.3 16.7l-1.8 1.8"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4.5l-3 15"/></svg>'
+];
+
+// Navegación principal. "ruta" = página interna; "url" = enlace externo.
 const NAV = [
   { id: 'inicio', texto: 'Inicio', ruta: 'index.html' },
   { id: 'sobre', texto: 'Sobre', ruta: 'sobre/index.html' },
   { id: 'proyectos', texto: 'Proyectos', ruta: 'proyectos/index.html' },
+  { id: 'diagnostico', texto: 'Diagnóstico', url: DIAGNOSTICO_URL },
   { id: 'contacto', texto: 'Contacto', ruta: 'contacto/index.html' }
 ];
 
@@ -64,12 +81,13 @@ const NAV = [
 //            (el sitio muestra "Ficha en preparación" y no los textos de relleno).
 // url: dejar '' si no hay un enlace público real — el sitio NUNCA inventa una URL.
 // textoSinEnlace: mensaje opcional para cuando no hay url (ej. "Bot privado, sin acceso público").
-//                  Si no se define, el sitio usa el mensaje genérico según el estado.
 // tecnologias: dejar [] si todavía no está confirmado.
+// imagen: ruta opcional de la miniatura real (webp 1200 × 750, relación 16:10), por ejemplo
+//         'assets/img/proyectos/el-burdel.webp'. Si no existe, se muestra una portada tipográfica.
 const PROYECTOS = [
   {
-    id: 'eva-spa',
-    nombre: 'Eva Spa',
+    id: 'spa-sosiego',
+    nombre: 'Spa Sosiego',
     categoria: 'Categoría a definir',
     estado: 'prototipo',
     pendiente: true,
@@ -156,7 +174,8 @@ const ETIQUETAS_ESTADO = {
   'interno': 'Interno'
 };
 
-const ICONO_MENU = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>';
+const ICONO_MENU = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>';
+const ICONO_CERRAR = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>';
 
 // Proyectos a mostrar: con { soloReales: true } se omiten las fichas pendientes.
 function proyectosVisibles(opciones) {
@@ -170,10 +189,6 @@ function indicadorEstado(estado) {
   return `<span class="estado ${clave}"><i aria-hidden="true"></i>${ETIQUETAS_ESTADO[clave]}</span>`;
 }
 
-function numeroProyecto(i) {
-  return String(i + 1).padStart(2, '0');
-}
-
 function categoriaProyecto(p) {
   return p.categoria === 'Categoría a definir' ? 'Ficha en preparación' : p.categoria;
 }
@@ -181,7 +196,7 @@ function categoriaProyecto(p) {
 function enlaceProyecto(p) {
   if (p.url) {
     const texto = p.textoEnlace || 'Ver proyecto ↗';
-    return `<a class="enlace" href="${p.url}" target="_blank" rel="noopener">${texto}</a>`;
+    return `<a class="btn btn-oscuro" href="${p.url}" target="_blank" rel="noopener">${texto}</a>`;
   }
   if (p.textoSinEnlace) {
     return `<span class="sin-enlace">${p.textoSinEnlace}</span>`;
@@ -192,6 +207,19 @@ function enlaceProyecto(p) {
   return `<span class="sin-enlace">Enlace próximamente</span>`;
 }
 
+// Miniatura: imagen real si el proyecto la define; si no, portada tipográfica con identidad propia.
+// modo 'tarjeta': el nombre del proyecto es el título (h3) dentro de la portada.
+// modo 'ficha': la portada es decorativa (el título está en el cuerpo de la ficha).
+function portadaProyecto(p, base, modo) {
+  if (p.imagen) {
+    return `<span class="portada"><img src="${base}${p.imagen}" alt="Captura de ${p.nombre}" width="1200" height="750" loading="lazy" decoding="async"></span>`;
+  }
+  const clase = ['el-burdel', 'yca', 'burdel-bot', 'gestion-comercios', 'spa-sosiego'].includes(p.id) ? 'p-' + p.id : 'p-generico';
+  const inicial = p.nombre.trim().charAt(0).toUpperCase();
+  const titulo = modo === 'tarjeta' ? `<h3 class="tit">${p.nombre}</h3>` : '';
+  return `<span class="portada gen ${clase}"><span class="inicial" aria-hidden="true">${inicial}</span>${titulo}</span>`;
+}
+
 // ── Nav ──────────────────────────────────────────────────────
 function renderNavSitio(activo, base) {
   base = base || '';
@@ -200,18 +228,23 @@ function renderNavSitio(activo, base) {
   const contenedor = document.getElementById('nav-sitio');
   if (!contenedor) return;
 
-  const enlaces = NAV.map(n =>
-    `<a href="${base}${n.ruta}"${n.id === activo ? ' aria-current="page"' : ''}>${n.texto}</a>`
+  const enlaces = NAV.map(n => n.url
+    ? `<a href="${n.url}">${n.texto}</a>`
+    : `<a href="${base}${n.ruta}"${n.id === activo ? ' aria-current="page"' : ''}>${n.texto}</a>`
   ).join('');
 
   contenedor.innerHTML = `
     <div class="contenedor">
-      <a class="marca" href="${base}index.html">
-        <img src="${base}${LOGO}" alt="" width="34" height="34">
-        ElevaLab
+      <a class="marca" href="${base}index.html" aria-label="ElevaLab, inicio">
+        <picture><source srcset="${base}${LOGO}" type="image/webp"><img src="${base}${LOGO_PNG}" alt="" width="38" height="38"></picture>
+        <span>Eleva<b>Lab</b></span>
       </a>
       <button class="btn-menu" id="btnMenu" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="enlacesNav">${ICONO_MENU}</button>
-      <nav class="enlaces" id="enlacesNav" aria-label="Navegación principal">${enlaces}</nav>
+      <nav class="enlaces" id="enlacesNav" aria-label="Navegación principal">
+        ${enlaces}
+        <a class="nav-acceso" href="${base}acceso/index.html"${activo === 'acceso' ? ' aria-current="page"' : ''}>Acceso al sistema</a>
+        <a class="nav-cta" href="${base}contacto/index.html">Hablemos →</a>
+      </nav>
     </div>
   `;
 
@@ -221,14 +254,21 @@ function renderNavSitio(activo, base) {
     nav.classList.toggle('abierto', abierto);
     btn.setAttribute('aria-expanded', String(abierto));
     btn.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+    btn.innerHTML = abierto ? ICONO_CERRAR : ICONO_MENU;
   };
   btn.addEventListener('click', () => fijar(!nav.classList.contains('abierto')));
+  nav.addEventListener('click', e => { if (e.target.closest('a')) fijar(false); });
+  document.addEventListener('click', e => {
+    // composedPath se calcula al despachar el clic, así que sigue siendo válido aunque el icono del botón haya cambiado.
+    if (nav.classList.contains('abierto') && !e.composedPath().includes(contenedor)) fijar(false);
+  });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && nav.classList.contains('abierto')) {
       fijar(false);
       btn.focus();
     }
   });
+  window.matchMedia('(min-width: 900px)').addEventListener('change', e => { if (e.matches) fijar(false); });
 }
 
 // ── Footer ───────────────────────────────────────────────────
@@ -241,15 +281,17 @@ function renderFooterSitio(base) {
     .filter(r => REDES[r.clave])
     .map(r => `<li><a href="${REDES[r.clave]}" target="_blank" rel="noopener">${r.nombre}</a></li>`)
     .join('');
-  const explorar = NAV.map(n => `<li><a href="${base}${n.ruta}">${n.texto}</a></li>`).join('');
+  const explorar = NAV.map(n => n.url
+    ? `<li><a href="${n.url}">${n.texto}</a></li>`
+    : `<li><a href="${base}${n.ruta}">${n.texto}</a></li>`).join('');
 
   contenedor.innerHTML = `
     <div class="contenedor">
       <div class="pie-grid">
         <div>
           <a class="pie-marca" href="${base}index.html">
-            <img src="${base}${LOGO}" alt="" width="56" height="56">
-            <span>ElevaLab</span>
+            <picture><source srcset="${base}${LOGO}" type="image/webp"><img src="${base}${LOGO_PNG}" alt="" width="44" height="44" loading="lazy"></picture>
+            <span>Eleva<b>Lab</b></span>
           </a>
           <p class="pie-frase">Tecnología para que los negocios avancen.</p>
         </div>
@@ -261,72 +303,66 @@ function renderFooterSitio(base) {
           <h2 class="pie-tit">Redes</h2>
           <ul>${redes}</ul>
         </div>
+        <div>
+          <h2 class="pie-tit">Sistema</h2>
+          <ul><li><a href="${base}acceso/index.html">Acceso al sistema</a></li></ul>
+        </div>
       </div>
       <div class="pie-base">
-        <span>© ${new Date().getFullYear()} ElevaLab</span>
-        <span>Un proyecto de Sebastián Quiven</span>
+        <span>© ${new Date().getFullYear()} ElevaLab. Un proyecto de Sebastián Quiven.</span>
         <span><a href="mailto:${CONTACTO.correo}">${CONTACTO.correo}</a></span>
       </div>
     </div>
   `;
 }
 
-// ── Franja de estado (home) — calculada desde PROYECTOS ──────
-function renderEstadoLab(idContenedor, opciones) {
+// ── Soluciones (home) ────────────────────────────────────────
+// prefijoProyectos: ruta hacia proyectos/index.html
+function renderServicios(idContenedor, prefijoProyectos) {
   const cont = document.getElementById(idContenedor);
   if (!cont) return;
-
-  const lista = proyectosVisibles(opciones);
-  const cuenta = e => lista.filter(p => p.estado === e).length;
-  const estados = Object.keys(ETIQUETAS_ESTADO)
-    .filter(e => cuenta(e) > 0)
-    .map(e => `<span class="estado ${e}"><i aria-hidden="true"></i>${ETIQUETAS_ESTADO[e]} <b>${cuenta(e)}</b></span>`)
-    .join('');
-
-  cont.innerHTML = `
-    <div class="contenedor">
-      <span class="mono">${lista.length} proyectos registrados</span>
-      ${estados}
-    </div>
-  `;
+  cont.innerHTML = SERVICIOS.map((s, i) => `
+    <li class="sol">
+      <div class="ico">${ICONOS_SERVICIO[i] || ''}</div>
+      <div>
+        <h3>${s.nombre}</h3>
+        <p>${s.descripcion}</p>
+        ${s.ejemplo ? `<a class="ejemplo" href="${prefijoProyectos}#${s.ejemplo.proyecto}"><span>Ejemplo real:</span> ${s.ejemplo.texto} <span aria-hidden="true">&nbsp;↗</span></a>` : ''}
+      </div>
+    </li>`).join('');
 }
 
-// ── Índice de proyectos (home y arriba de /proyectos/) ───────
-// prefijo: '' en /proyectos/ (ancla local) o 'proyectos/index.html' desde la home.
-function renderIndiceProyectos(idContenedor, prefijo, opciones) {
+// ── Proyectos destacados (home): solo los que tienen información real ──
+function renderProyectosDestacados(idContenedor, prefijo, base) {
   const cont = document.getElementById(idContenedor);
   if (!cont) return;
-  prefijo = prefijo || '';
-
-  cont.innerHTML = proyectosVisibles(opciones).map((p, i) => `
+  base = base || '';
+  cont.innerHTML = proyectosVisibles({ soloReales: true }).map(p => `
     <li>
-      <a class="fila-proy" href="${prefijo}#${p.id}">
-        <span class="fp-num mono">${numeroProyecto(i)}</span>
-        <span class="fp-nombre">${p.nombre}</span>
-        <span class="fp-cat">${categoriaProyecto(p)}</span>
-        ${indicadorEstado(p.estado)}
-        <span class="fp-flecha" aria-hidden="true">↗</span>
+      <a class="tarjeta" href="${prefijo}#${p.id}">
+        ${portadaProyecto(p, base, 'tarjeta')}
+        <span class="cuerpo">
+          ${p.imagen ? `<h3>${p.nombre}</h3>` : ''}
+          <span class="cat">${categoriaProyecto(p)}</span>
+        </span>
+        <span class="pie-t">${indicadorEstado(p.estado)}<span class="ver">Ver caso →</span></span>
       </a>
-    </li>
-  `).join('');
+    </li>`).join('');
 }
 
 // ── Listado completo (/proyectos/) ───────────────────────────
-function renderListaProyectosCompleta(idContenedor) {
+function renderListaProyectosCompleta(idContenedor, base) {
   const cont = document.getElementById(idContenedor);
   if (!cont) return;
+  base = base || '';
 
-  cont.innerHTML = PROYECTOS.map((p, i) => {
+  cont.innerHTML = PROYECTOS.map(p => {
     const tecnologias = p.tecnologias.length
       ? `<ul class="tec">${p.tecnologias.map(t => `<li>${t}</li>`).join('')}</ul>`
       : 'Por confirmar.';
 
-    const aporte = p.aporte
-      ? `<div><dt>Mi aporte</dt><dd>${p.aporte}</dd></div>`
-      : '';
-    const potencial = p.potencial
-      ? `<div><dt>Potencial de adaptación</dt><dd>${p.potencial}</dd></div>`
-      : '';
+    const aporte = p.aporte ? `<div class="ancho"><dt>Mi aporte</dt><dd>${p.aporte}</dd></div>` : '';
+    const potencial = p.potencial ? `<div class="ancho"><dt>Potencial de adaptación</dt><dd>${p.potencial}</dd></div>` : '';
 
     const cuerpo = p.pendiente
       ? `<p class="pr-pend">Ficha en preparación. Este proyecto todavía no tiene descripción pública.</p>`
@@ -335,22 +371,22 @@ function renderListaProyectosCompleta(idContenedor) {
         <dl class="pr-datos">
           <div><dt>Problema / objetivo</dt><dd>${p.problema}</dd></div>
           <div><dt>Qué se construyó</dt><dd>${p.construido}</dd></div>
-          <div><dt>Tecnologías</dt><dd>${tecnologias}</dd></div>
+          <div class="ancho"><dt>Tecnologías</dt><dd>${tecnologias}</dd></div>
           ${aporte}
           ${potencial}
         </dl>`;
 
     return `
       <article class="proyecto" id="${p.id}">
-        <div class="pr-num" aria-hidden="true">${numeroProyecto(i)}</div>
-        <div class="pr-cuerpo">
+        ${portadaProyecto(p, base, 'ficha')}
+        <div class="cuerpo-p">
           <div class="pr-top">
             ${indicadorEstado(p.estado)}
             <span class="pr-cat">${categoriaProyecto(p)}</span>
           </div>
           <h2>${p.nombre}</h2>
           ${cuerpo}
-          <div>${enlaceProyecto(p)}</div>
+          <div class="pr-enlace">${enlaceProyecto(p)}</div>
         </div>
       </article>
     `;
@@ -362,37 +398,20 @@ function renderContactoSitio(idContenedor) {
   const cont = document.getElementById(idContenedor);
   if (!cont) return;
 
-  const [principal, ...resto] = REDES_INFO;
-  const destacado = REDES[principal.clave]
-    ? `<a class="ig" href="${REDES[principal.clave]}" target="_blank" rel="noopener">
-         <span class="mono">Canal directo hoy: ${principal.nombre}</span>
-         <span class="ig-nombre">${principal.detalle}</span>
-         <span class="ig-flecha" aria-hidden="true">↗</span>
-       </a>`
-    : '';
+  const principal = `
+    <a class="card-contacto" href="mailto:${CONTACTO.correo}?subject=Consulta%20desde%20la%20web%20de%20ElevaLab">
+      <span><span class="mini">Escribinos por correo</span><span class="grande">${CONTACTO.correo}</span></span>
+      <span class="flecha-g" aria-hidden="true">→</span>
+    </a>`;
 
-  const filas = (destacado ? resto : REDES_INFO).map(r => {
+  const filas = REDES_INFO.map(r => {
     const valor = REDES[r.clave]
       ? `<a class="enlace" href="${REDES[r.clave]}" target="_blank" rel="noopener">Abrir ↗</a>`
       : `<span class="pendiente">Próximamente</span>`;
     return `<li><div><b>${r.nombre}</b><small>${r.detalle}</small></div>${valor}</li>`;
   }).join('');
 
-  cont.innerHTML = destacado + `<ul class="canales">${filas}</ul>`;
-}
-
-// Áreas de trabajo (home). prefijoProyectos: ruta hacia proyectos/index.html
-function renderServicios(idContenedor, prefijoProyectos) {
-  const cont = document.getElementById(idContenedor);
-  if (!cont) return;
-  cont.innerHTML = SERVICIOS.map((s, i) => `
-    <li>
-      <h3><span class="num mono">${String(i + 1).padStart(2, '0')}</span>${s.nombre}</h3>
-      <div>
-        <p>${s.descripcion}</p>
-        ${s.ejemplo ? `<a class="ejemplo mono" href="${prefijoProyectos}#${s.ejemplo.proyecto}"><span>Ejemplo real</span> ${s.ejemplo.texto} <span aria-hidden="true">↗</span></a>` : ''}
-      </div>
-    </li>`).join('');
+  cont.innerHTML = principal + `<ul class="canales" style="margin-top:28px">${filas}</ul>`;
 }
 
 // Bloque de contacto de la home: lee CONTACTO.
@@ -400,10 +419,9 @@ function renderContactoHome(idContenedor) {
   const cont = document.getElementById(idContenedor);
   if (!cont) return;
   cont.innerHTML = `
-    <a class="ig ig-correo" href="mailto:${CONTACTO.correo}?subject=Consulta%20desde%20la%20web%20de%20ElevaLab">
-      <span class="mono">Escribinos por correo</span>
-      <span class="ig-nombre">${CONTACTO.correo}</span>
-      <span class="ig-flecha" aria-hidden="true">↗</span>
+    <a class="card-contacto" href="mailto:${CONTACTO.correo}?subject=Consulta%20desde%20la%20web%20de%20ElevaLab">
+      <span><span class="mini">Escribinos por correo</span><span class="grande">${CONTACTO.correo}</span></span>
+      <span class="flecha-g" aria-hidden="true">→</span>
     </a>
     <p class="secundario">También por Instagram: <a class="enlace" href="${CONTACTO.instagram.url}" target="_blank" rel="noopener">${CONTACTO.instagram.usuario} ↗</a></p>`;
 }
