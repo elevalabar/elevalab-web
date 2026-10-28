@@ -105,10 +105,13 @@ const CAMINOS = [
 // tecnologias: dejar [] si todavía no está confirmado.
 // imagen: ruta opcional de la miniatura real (webp 1200 × 750, relación 16:10), por ejemplo
 //         'assets/img/proyectos/el-burdel.webp'. Si no existe, se muestra una portada tipográfica.
+// imagenFicha: captura vertical opcional (por ejemplo 'assets/img/proyectos/el-burdel-movil.webp'),
+//         que se usa solo en la ficha de /proyectos/ en pantallas anchas.
 const PROYECTOS = [
   {
     id: 'spa-sosiego',
     imagen: 'assets/img/proyectos/spa-sosiego.webp',
+    imagenFicha: 'assets/img/proyectos/spa-sosiego-movil.webp',
     nombre: 'Spa Sosiego',
     categoria: 'Sitio web, reservas online y sistema de gestión integral',
     estado: 'en-vivo',
@@ -127,6 +130,7 @@ const PROYECTOS = [
   {
     id: 'yca',
     imagen: 'assets/img/proyectos/yca.webp',
+    imagenFicha: 'assets/img/proyectos/yca-movil.webp',
     nombre: 'YCA Cerámica',
     categoria: 'Plataforma web y sistema de gestión para un taller de cerámica',
     estado: 'en-vivo',
@@ -143,6 +147,7 @@ const PROYECTOS = [
   {
     id: 'el-burdel',
     imagen: 'assets/img/proyectos/el-burdel.webp',
+    imagenFicha: 'assets/img/proyectos/el-burdel-movil.webp',
     nombre: 'El Burdel',
     categoria: 'Plataforma modular de juegos y dinámicas',
     estado: 'en-vivo',
@@ -245,7 +250,9 @@ function enlaceProyecto(p) {
 // modo 'ficha': la portada es decorativa (el título está en el cuerpo de la ficha).
 function portadaProyecto(p, base, modo) {
   if (p.imagen) {
-    return `<span class="portada"><img src="${base}${p.imagen}" alt="Captura de ${p.nombre}" width="1200" height="750" loading="lazy" decoding="async"></span>`;
+    // En la ficha, en pantallas anchas se usa la captura vertical (imagenFicha) si el proyecto la tiene.
+    const fuente = (modo === 'ficha' && p.imagenFicha) ? `<source media="(min-width: 900px)" srcset="${base}${p.imagenFicha}">` : '';
+    return `<span class="portada"><picture style="display:block;width:100%;height:100%">${fuente}<img src="${base}${p.imagen}" alt="Captura de ${p.nombre}" width="1200" height="750" loading="lazy" decoding="async"></picture></span>`;
   }
   const clase = ['el-burdel', 'yca', 'burdel-bot', 'gestion-comercios', 'spa-sosiego'].includes(p.id) ? 'p-' + p.id : 'p-generico';
   const inicial = p.nombre.trim().charAt(0).toUpperCase();
