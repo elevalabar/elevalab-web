@@ -110,7 +110,7 @@ const PROYECTOS = [
     id: 'spa-sosiego',
     nombre: 'Spa Sosiego',
     categoria: 'Sitio web, reservas online y sistema de gestión integral',
-    estado: 'verificacion',
+    estado: 'en-vivo',
     pendiente: false,
     descripcionBreve: 'Spa Sosiego es el sitio web con reservas online y el sistema de gestión de un salón de manicura y pedicura: las clientas reservan y pagan una seña desde el celular o la computadora, y quien administra el negocio maneja turnos, clientas, caja, inventario y facturación desde un panel propio.',
     problema: 'El salón dependía de Calendly y de la gestión manual de turnos, clientas y cobros. El objetivo fue reemplazarlo por un sistema propio donde el turno solo queda confirmado cuando se paga una seña, sin turnos duplicados, con la información de clientas, turnos, pagos, caja e inventario en un solo lugar y con menos trabajo manual para cobrar y facturar. El panel se pensó primero para el celular, porque es desde donde lo usa la titular del negocio.',
@@ -119,9 +119,9 @@ const PROYECTOS = [
     arquitectura: 'El sitio y el panel están hechos con HTML, CSS y JavaScript, sin framework, y se publican en GitHub Pages. El navegador se comunica con una API en Google Apps Script, que usa Google Sheets como base de datos, Google Calendar para la disponibilidad y Google Drive para fotos y comprobantes. El servidor es la única fuente de verdad de los horarios disponibles y consulta directamente a Mercado Pago antes de confirmar un turno. El dominio propio se administra con Cloudflare.',
     aporte: 'Dirección del producto y de las reglas de negocio: seña obligatoria, política de cambios y cancelaciones, turnos de 60 minutos, un servicio de manos y uno de pies por reserva, y el orden de trabajo por etapas. Armado de la infraestructura y las cuentas (dominio, correo propio, Mercado Pago, facturación electrónica de ARCA y calendario dedicado), publicación y mantenimiento del sistema, pruebas en uso real que detectaron errores que luego se corrigieron, y pedidos concretos de diseño y de experiencia de uso. El código se desarrolló con asistencia de inteligencia artificial (Claude) y no se presenta como escrito a mano.',
     potencial: 'Ya existe como base reutilizable el motor de disponibilidad con agenda configurable, el flujo de seña con vencimiento y confirmación, los mails automáticos, la caja, la facturación electrónica (pensada para monotributo en Argentina) y el panel de administración. Requeriría desarrollo adicional atender a varias profesionales o recursos, usar una duración distinta por servicio (hoy es fija), configurar todo sin tocar código, soportar otros regímenes fiscales y contar con un backend más robusto si crece el volumen. No es un producto genérico instalable ni un servicio que ElevaLab ofrezca hoy.',
-    estadoActual: 'El sitio está publicado en un dominio propio y el sistema se probó con un pago real de punta a punta y con facturación electrónica de prueba. Todavía se están verificando detalles operativos, como el cierre automático de caja y la facturación de los turnos con seña. También quedan pendientes la galería de tendencias, el contacto por WhatsApp e Instagram y los turnos de media hora cargados desde el panel. No hay mediciones de resultados.',
-    url: '',
-    textoSinEnlace: 'Enlace al sitio por confirmar con la titular'
+    estadoActual: 'El sitio y el sistema están terminados y publicados en un dominio propio. Se probaron con un pago real de punta a punta y con facturación electrónica.',
+    url: 'https://spasosiego.com.ar/',
+    textoEnlace: 'Visitar Spa Sosiego ↗'
   },
   {
     id: 'yca',
