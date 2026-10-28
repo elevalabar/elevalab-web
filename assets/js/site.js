@@ -95,7 +95,8 @@ const CAMINOS = [
 
 // Catálogo de proyectos. Fuente única para la home y /proyectos/.
 //
-// estado: 'en-vivo' | 'prototipo' | 'interno'
+// estado: 'en-vivo' | 'prototipo' | 'interno' | 'verificacion' | 'proximamente'
+// soloResumen: true  → ficha breve (solo descripción), para proyectos que todavía no están terminados.
 // pendiente: true mientras el proyecto no tenga información real
 //            (el sitio muestra "Ficha en preparación" y no los textos de relleno).
 // url: dejar '' si no hay un enlace público real — el sitio NUNCA inventa una URL.
@@ -107,29 +108,13 @@ const PROYECTOS = [
   {
     id: 'spa-sosiego',
     nombre: 'Spa Sosiego',
-    categoria: 'Categoría a definir',
-    estado: 'prototipo',
+    categoria: 'Sitio web, reservas online y sistema de gestión integral',
+    estado: 'verificacion',
     pendiente: true,
-    descripcionBreve: 'Descripción pendiente de completar.',
-    problema: 'Contenido pendiente — completar con el problema u objetivo real del proyecto.',
-    construido: 'Contenido pendiente — completar con lo que efectivamente se construyó.',
+    descripcionBreve: 'Sitio web, reservas online y sistema de gestión integral. El desarrollo está completo; faltan verificar algunos detalles operativos antes de publicar la ficha.',
     tecnologias: [],
-    url: ''
-  },
-  {
-    id: 'el-burdel',
-    nombre: 'El Burdel',
-    categoria: 'Plataforma modular de juegos y dinámicas',
-    estado: 'en-vivo',
-    pendiente: false,
-    descripcionBreve: 'El Burdel es una plataforma web privada de dinámicas y minijuegos para una comunidad cerrada, con usuarios, administración propia, sesiones en vivo, puntuación y contenido.',
-    problema: 'Darle a una comunidad un espacio propio para centralizar juego, participación, ranking y contenido, con acceso controlado y administración propia.',
-    construido: 'Un dashboard privado con sesiones de juego en vivo (Taboo, Wordle, El Impostor, ¿Quién Soy?, El Millonario y Ruleta), ranking global y tests de personalidad grupal, además de noticias, galería de fotos, reproductor de música y horóscopo diario y mensual. Se completa con un panel de administración modular, herramientas de control de usuarios y sesiones, landing pública y páginas legales.',
-    aporte: 'Diagnóstico y resolución de problemas de registro y autenticación, rediseño UX y modularización del panel de administración, desarrollo de los módulos de Tests y Horóscopo —este último automatizado con Google Apps Script y la API de Gemini—, mejoras del sistema de música, rediseño de la landing pública y desarrollo de la galería.',
-    potencial: 'El Burdel nació para una comunidad privada concreta, pero su combinación de usuarios, administración, dinámicas en vivo, puntuación, ranking y contenido funciona como una base adaptable a otro tipo de experiencias interactivas: eventos y cumpleaños, encuentros recreativos para grupos, sistemas de puntos y desafíos para gimnasios, dinámicas para clubes o comunidades, o experiencias para salones y otros espacios. Por ahora esto es potencial de la arquitectura, no un servicio que ElevaLab ofrezca hoy.',
-    tecnologias: ['HTML5', 'CSS3', 'JavaScript (ES6)', 'Firebase Authentication', 'Firebase Realtime Database', 'Google Apps Script', 'Google Drive', 'Gemini API', 'GitHub Pages'],
-    url: 'https://elburdel.com.ar',
-    textoEnlace: 'Visitar El Burdel ↗'
+    url: '',
+    textoSinEnlace: 'Enlace por confirmar'
   },
   {
     id: 'yca',
@@ -147,16 +132,45 @@ const PROYECTOS = [
     textoEnlace: 'Visitar YCA Cerámica ↗'
   },
   {
-    id: 'bot-discord',
-    nombre: 'Bot de Discord',
-    categoria: 'Automatización',
-    estado: 'prototipo',
-    pendiente: true,
-    descripcionBreve: 'Descripción pendiente de completar.',
-    problema: 'Contenido pendiente — completar con el problema u objetivo real del proyecto.',
-    construido: 'Contenido pendiente — completar con lo que efectivamente se construyó.',
+    id: 'el-burdel',
+    nombre: 'El Burdel',
+    categoria: 'Plataforma modular de juegos y dinámicas',
+    estado: 'en-vivo',
+    pendiente: false,
+    descripcionBreve: 'El Burdel es una plataforma web privada de dinámicas y minijuegos para una comunidad cerrada, con usuarios, administración propia, sesiones en vivo, puntuación y contenido.',
+    problema: 'Darle a una comunidad un espacio propio para centralizar juego, participación, ranking y contenido, con acceso controlado y administración propia.',
+    construido: 'Un dashboard privado con sesiones de juego en vivo (Taboo, Wordle, El Impostor, ¿Quién Soy?, El Millonario y Ruleta), ranking global y tests de personalidad grupal, además de noticias, galería de fotos, reproductor de música y horóscopo diario y mensual. Se completa con un panel de administración modular, herramientas de control de usuarios y sesiones, landing pública y páginas legales.',
+    aporte: 'Diagnóstico y resolución de problemas de registro y autenticación, rediseño UX y modularización del panel de administración, desarrollo de los módulos de Tests y Horóscopo —este último automatizado con Google Apps Script y la API de Gemini—, mejoras del sistema de música, rediseño de la landing pública y desarrollo de la galería.',
+    potencial: 'El Burdel nació para una comunidad privada concreta, pero su combinación de usuarios, administración, dinámicas en vivo, puntuación, ranking y contenido funciona como una base adaptable a otro tipo de experiencias interactivas: eventos y cumpleaños, encuentros recreativos para grupos, sistemas de puntos y desafíos para gimnasios, dinámicas para clubes o comunidades, o experiencias para salones y otros espacios. Por ahora esto es potencial de la arquitectura, no un servicio que ElevaLab ofrezca hoy.',
+    tecnologias: ['HTML5', 'CSS3', 'JavaScript (ES6)', 'Firebase Authentication', 'Firebase Realtime Database', 'Google Apps Script', 'Google Drive', 'Gemini API', 'GitHub Pages'],
+    url: 'https://elburdel.com.ar',
+    textoEnlace: 'Visitar El Burdel ↗'
+  },
+  {
+    id: 'gestion-familiar',
+    nombre: 'Sistema de gestión a medida',
+    categoria: 'Para el negocio de un familiar · En desarrollo',
+    estado: 'proximamente',
+    pendiente: false,
+    soloResumen: true,
+    descripcionBreve: 'Sistema de gestión pensado para el negocio de un familiar. Todavía está en desarrollo: no está terminado ni publicado, y por ahora no hay más información pública.',
     tecnologias: [],
     url: ''
+  },
+  {
+    id: 'burdel-bot',
+    nombre: 'Bot de Discord',
+    categoria: 'Automatización para una comunidad de Discord',
+    estado: 'en-vivo',
+    pendiente: false,
+    descripcionBreve: 'Es un bot privado que funciona 24/7 dentro de una comunidad de Discord, automatizando contenido, membresía y organización del servidor.',
+    problema: 'Automatizar tareas que antes requerían intervención manual dentro de una comunidad de Discord: compartir contenido de redes sociales, controlar la actividad de los miembros y evitar que el canal principal se volviera un historial interminable.',
+    construido: 'Un bot que detecta y procesa links de Instagram, TikTok, X/Twitter y YouTube para publicarlos dentro de Discord, gestiona automáticamente la membresía —cambiando el estado de usuarios inactivos, reincorporándolos si vuelven a participar y expulsándolos si la inactividad se mantiene— y archiva el canal principal cada mes, creando uno nuevo con los permisos correspondientes. Se completa con funciones sociales como cumpleaños, salas en vivo, roles y agenda deportiva diaria.',
+    aporte: 'Desarrollo del sistema de gestión de actividad y membresía, diseño de las reglas de inactividad, reincorporación y expulsión, implementación del archivado automático, migración y evolución de la infraestructura, integración y mantenimiento de los servicios externos, y resolución de incidentes reales en producción.',
+    potencial: 'Nació para una comunidad de Discord concreta, pero sus mecanismos de gestión de membresía, archivado y notificaciones funcionan como una base adaptable a otras comunidades privadas, clubes o grupos de socios que necesiten automatizar moderación, recordatorios o seguimiento de actividad. Por ahora esto es potencial de la arquitectura, no un servicio que ElevaLab ofrezca hoy.',
+    tecnologias: ['Node.js', 'discord.js v14', 'Discord API', 'ESPN', 'TheSportsDB', 'Cloudflare Tunnel', 'PM2', 'Termux (Android)'],
+    url: '',
+    textoSinEnlace: 'Bot privado, sin acceso público'
   },
   {
     id: 'gestion-comercios',
@@ -169,28 +183,15 @@ const PROYECTOS = [
     construido: 'Una aplicación web con alta y ficha de comercios, cuestionarios de auditoría e inspección, un diagnóstico digital y un módulo de prospección desde datos de Google Maps.',
     tecnologias: ['Google Apps Script', 'Google Sheets', 'JavaScript'],
     url: ''
-  },
-  {
-    id: 'burdel-bot',
-    nombre: 'Bot de automatización para Discord',
-    categoria: 'Automatización para una comunidad de Discord',
-    estado: 'en-vivo',
-    pendiente: false,
-    descripcionBreve: 'Es un bot privado que funciona 24/7 dentro de una comunidad de Discord, automatizando contenido, membresía y organización del servidor.',
-    problema: 'Automatizar tareas que antes requerían intervención manual dentro de una comunidad de Discord: compartir contenido de redes sociales, controlar la actividad de los miembros y evitar que el canal principal se volviera un historial interminable.',
-    construido: 'Un bot que detecta y procesa links de Instagram, TikTok, X/Twitter y YouTube para publicarlos dentro de Discord, gestiona automáticamente la membresía —cambiando el estado de usuarios inactivos, reincorporándolos si vuelven a participar y expulsándolos si la inactividad se mantiene— y archiva el canal principal cada mes, creando uno nuevo con los permisos correspondientes. Se completa con funciones sociales como cumpleaños, salas en vivo, roles y agenda deportiva diaria.',
-    aporte: 'Desarrollo del sistema de gestión de actividad y membresía, diseño de las reglas de inactividad, reincorporación y expulsión, implementación del archivado automático, migración y evolución de la infraestructura, integración y mantenimiento de los servicios externos, y resolución de incidentes reales en producción.',
-    potencial: 'Nació para una comunidad de Discord concreta, pero sus mecanismos de gestión de membresía, archivado y notificaciones funcionan como una base adaptable a otras comunidades privadas, clubes o grupos de socios que necesiten automatizar moderación, recordatorios o seguimiento de actividad. Por ahora esto es potencial de la arquitectura, no un servicio que ElevaLab ofrezca hoy.',
-    tecnologias: ['Node.js', 'discord.js v14', 'Discord API', 'ESPN', 'TheSportsDB', 'Cloudflare Tunnel', 'PM2', 'Termux (Android)'],
-    url: '',
-    textoSinEnlace: 'Bot privado, sin acceso público'
   }
 ];
 
 const ETIQUETAS_ESTADO = {
   'en-vivo': 'En vivo',
   'prototipo': 'Prototipo',
-  'interno': 'Interno'
+  'interno': 'Interno',
+  'verificacion': 'En verificación',
+  'proximamente': 'Próximamente'
 };
 
 const ICONO_MENU = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>';
@@ -219,6 +220,9 @@ function enlaceProyecto(p) {
   }
   if (p.textoSinEnlace) {
     return `<span class="sin-enlace">${p.textoSinEnlace}</span>`;
+  }
+  if (p.estado === 'proximamente') {
+    return `<span class="sin-enlace">Próximamente: todavía no hay nada publicado</span>`;
   }
   if (p.estado === 'interno') {
     return `<span class="sin-enlace">Herramienta interna, sin acceso público</span>`;
@@ -376,7 +380,7 @@ function renderProyectosDestacados(idContenedor, prefijo, base) {
   base = base || '';
   cont.innerHTML = proyectosVisibles({ soloReales: true }).map(p => `
     <li>
-      <a class="tarjeta" href="${prefijo}#${p.id}">
+      <a class="tarjeta${p.estado === 'proximamente' ? ' proximo' : ''}" href="${prefijo}#${p.id}">
         ${portadaProyecto(p, base, 'tarjeta')}
         <span class="cuerpo">
           ${p.imagen ? `<h3>${p.nombre}</h3>` : ''}
@@ -402,7 +406,9 @@ function renderListaProyectosCompleta(idContenedor, base) {
     const potencial = p.potencial ? `<div class="ancho"><dt>Potencial de adaptación</dt><dd>${p.potencial}</dd></div>` : '';
 
     const cuerpo = p.pendiente
-      ? `<p class="pr-pend">Ficha en preparación. Este proyecto todavía no tiene descripción pública.</p>`
+      ? `${p.descripcionBreve && !/^Descripción pendiente/.test(p.descripcionBreve) ? `<p class="pr-desc">${p.descripcionBreve}</p>` : ''}<p class="pr-pend">Ficha en preparación. Todavía no tiene la descripción completa publicada.</p>`
+      : p.soloResumen
+      ? `<p class="pr-desc">${p.descripcionBreve}</p>`
       : `
         <p class="pr-desc">${p.descripcionBreve}</p>
         <dl class="pr-datos">
@@ -414,7 +420,7 @@ function renderListaProyectosCompleta(idContenedor, base) {
         </dl>`;
 
     return `
-      <article class="proyecto" id="${p.id}">
+      <article class="proyecto${p.estado === 'proximamente' ? ' proximo' : ''}" id="${p.id}">
         ${portadaProyecto(p, base, 'ficha')}
         <div class="cuerpo-p">
           <div class="pr-top">
