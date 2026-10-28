@@ -223,7 +223,7 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; }
 @media (min-width: 900px) { .pagina-cab { padding-top: 72px; padding-bottom: 56px; } }
 
 .proyectos-lista { display: grid; gap: 28px; }
-.proyecto { display: grid; background: #fff; border: 1px solid var(--claro-linea); border-radius: 18px; overflow: hidden; scroll-margin-top: 90px; }
+.proyecto { display: grid; background: #fff; border: 1px solid var(--claro-linea); border-radius: 18px; overflow: hidden; overflow: clip; scroll-margin-top: 90px; }
 .proyecto .portada { aspect-ratio: 16 / 9; }
 .proyecto .cuerpo-p { padding: 22px 20px 26px; }
 .proyecto h2 { font-size: clamp(1.5rem, 6vw, 2.1rem); color: var(--claro-texto); }
@@ -243,6 +243,8 @@ h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; }
 @media (min-width: 900px) {
   .proyecto { grid-template-columns: 5fr 7fr; }
   .proyecto .portada { aspect-ratio: auto; min-height: 100%; }
+  /* Fichas con captura real: la imagen mantiene su forma (3:4) y acompaña al texto al bajar, en vez de estirarse y agrandarse. */
+  .proyecto .portada.captura { aspect-ratio: 3 / 4; min-height: 0; align-self: start; position: sticky; top: 90px; }
   .proyecto .cuerpo-p { padding: 34px 38px 38px; }
   .pr-datos { grid-template-columns: 1fr 1fr; gap: 22px 28px; }
   .pr-datos .ancho { grid-column: 1 / -1; }
