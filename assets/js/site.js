@@ -108,6 +108,7 @@ const CAMINOS = [
 const PROYECTOS = [
   {
     id: 'spa-sosiego',
+    imagen: 'assets/img/proyectos/spa-sosiego.webp',
     nombre: 'Spa Sosiego',
     categoria: 'Sitio web, reservas online y sistema de gestión integral',
     estado: 'en-vivo',
@@ -125,6 +126,7 @@ const PROYECTOS = [
   },
   {
     id: 'yca',
+    imagen: 'assets/img/proyectos/yca.webp',
     nombre: 'YCA Cerámica',
     categoria: 'Plataforma web y sistema de gestión para un taller de cerámica',
     estado: 'en-vivo',
@@ -140,6 +142,7 @@ const PROYECTOS = [
   },
   {
     id: 'el-burdel',
+    imagen: 'assets/img/proyectos/el-burdel.webp',
     nombre: 'El Burdel',
     categoria: 'Plataforma modular de juegos y dinámicas',
     estado: 'en-vivo',
