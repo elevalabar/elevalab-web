@@ -75,21 +75,21 @@ const PIE_EXTRA = [
 ];
 
 // "Empezá por acá" (home): los tres caminos para que el cliente sepa rápido qué puede hacer.
-// "enlace: 'diagnostico'" lleva al diagnóstico; "asunto" abre un correo con ese asunto.
+// "enlace: 'diagnostico'" lleva al diagnóstico; "ruta" abre una página (formulario) dentro de la web.
 const CAMINOS = [
-  { n: '01', destacado: true, enlace: 'diagnostico',
+  { n: '01',
+    ruta: 'quiero-una-pagina/index.html',
+    titulo: 'Quiero una página para mi negocio',
+    texto: 'Contanos qué hace tu negocio y qué necesitás de tu página, y te preparamos una propuesta.',
+    accion: 'Contanos qué necesitás' },
+  { n: '02', destacado: true, enlace: 'diagnostico',
     titulo: 'Quiero saber cómo está mi negocio',
     texto: 'Hacé el diagnóstico gratuito: lleva de 5 a 8 minutos y recibís ideas concretas para mejorar tu presencia digital y tu organización.',
     accion: 'Hacer el diagnóstico' },
-  { n: '02',
-    asunto: 'Quiero una página para mi negocio',
-    titulo: 'Quiero una página para mi negocio',
-    texto: 'Escribinos y te pasamos un cuestionario corto para entender qué necesitás.',
-    accion: 'Escribirnos' },
   { n: '03',
-    asunto: 'No sé qué necesito',
+    ruta: 'no-se-que-necesito/index.html',
     titulo: 'No sé qué necesito',
-    texto: 'Contanos qué hace tu negocio y qué te gustaría mejorar, y lo conversamos.',
+    texto: 'Contanos cómo trabajás, qué te cuesta y qué te gustaría mejorar, y lo conversamos.',
     accion: 'Contanos tu caso' }
 ];
 
@@ -340,9 +340,7 @@ function renderCaminos(idContenedor) {
   const cont = document.getElementById(idContenedor);
   if (!cont) return;
   cont.innerHTML = CAMINOS.map(c => {
-    const href = c.enlace === 'diagnostico'
-      ? DIAGNOSTICO_URL
-      : `mailto:${CONTACTO.correo}?subject=${encodeURIComponent(c.asunto)}`;
+    const href = c.enlace === 'diagnostico' ? DIAGNOSTICO_URL : c.ruta;
     return `
     <li>
       <a class="camino${c.destacado ? ' destacado' : ''}" href="${href}">
