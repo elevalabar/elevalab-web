@@ -82,7 +82,7 @@ const CAMINOS = [
     titulo: 'Quiero una página para mi negocio',
     texto: 'Contanos qué hace tu negocio y qué necesitás de tu página, y te preparamos una propuesta.',
     accion: 'Contanos qué necesitás' },
-  { n: '02', destacado: true, enlace: 'diagnostico',
+  { n: '02', enlace: 'diagnostico',
     titulo: 'Quiero saber cómo está mi negocio',
     texto: 'Hacé el diagnóstico gratuito: lleva de 5 a 8 minutos y recibís ideas concretas para mejorar tu presencia digital y tu organización.',
     accion: 'Hacer el diagnóstico' },
