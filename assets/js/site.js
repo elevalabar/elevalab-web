@@ -252,7 +252,7 @@ function portadaProyecto(p, base, modo) {
   if (p.imagen) {
     // En la ficha, en pantallas anchas se usa la captura vertical (imagenFicha) si el proyecto la tiene.
     const fuente = (modo === 'ficha' && p.imagenFicha) ? `<source media="(min-width: 900px)" srcset="${base}${p.imagenFicha}">` : '';
-    return `<span class="portada"><picture style="display:block;width:100%;height:100%">${fuente}<img src="${base}${p.imagen}" alt="Captura de ${p.nombre}" width="1200" height="750" loading="lazy" decoding="async"></picture></span>`;
+    return `<span class="portada captura"><picture style="display:block;width:100%;height:100%">${fuente}<img src="${base}${p.imagen}" alt="Captura de ${p.nombre}" width="1200" height="750" loading="lazy" decoding="async"></picture></span>`;
   }
   const clase = ['el-burdel', 'yca', 'burdel-bot', 'gestion-comercios', 'spa-sosiego'].includes(p.id) ? 'p-' + p.id : 'p-generico';
   const inicial = p.nombre.trim().charAt(0).toUpperCase();
