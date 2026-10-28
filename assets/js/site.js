@@ -96,6 +96,7 @@ const CAMINOS = [
 // Catálogo de proyectos. Fuente única para la home y /proyectos/.
 //
 // estado: 'en-vivo' | 'prototipo' | 'interno' | 'verificacion' | 'proximamente'
+// arquitectura / estadoActual: campos opcionales de la ficha completa.
 // soloResumen: true  → ficha breve (solo descripción), para proyectos que todavía no están terminados.
 // pendiente: true mientras el proyecto no tenga información real
 //            (el sitio muestra "Ficha en preparación" y no los textos de relleno).
@@ -110,11 +111,17 @@ const PROYECTOS = [
     nombre: 'Spa Sosiego',
     categoria: 'Sitio web, reservas online y sistema de gestión integral',
     estado: 'verificacion',
-    pendiente: true,
-    descripcionBreve: 'Sitio web, reservas online y sistema de gestión integral. El desarrollo está completo; faltan verificar algunos detalles operativos antes de publicar la ficha.',
-    tecnologias: [],
+    pendiente: false,
+    descripcionBreve: 'Spa Sosiego es el sitio web con reservas online y el sistema de gestión de un salón de manicura y pedicura: las clientas reservan y pagan una seña desde el celular o la computadora, y quien administra el negocio maneja turnos, clientas, caja, inventario y facturación desde un panel propio.',
+    problema: 'El salón dependía de Calendly y de la gestión manual de turnos, clientas y cobros. El objetivo fue reemplazarlo por un sistema propio donde el turno solo queda confirmado cuando se paga una seña, sin turnos duplicados, con la información de clientas, turnos, pagos, caja e inventario en un solo lugar y con menos trabajo manual para cobrar y facturar. El panel se pensó primero para el celular, porque es desde donde lo usa la titular del negocio.',
+    construido: 'Un sitio público con servicios, un calendario que solo muestra horarios realmente libres, reserva con retención del horario mientras se paga la seña por Mercado Pago, confirmación y mail a la clienta, y cambio de horario o cancelación desde un enlace del mail, con las reglas de la seña. Incluye un catálogo público de productos que sale del inventario. El panel de administración cubre los turnos del día, la ficha de clientas con su historial, la agenda configurable, la caja diaria con cobros, el inventario con fotos y stock, y la facturación electrónica con control de monotributo. Además se importó el historial de clientas desde Calendly, y los avisos por mail salen desde un dominio propio.',
+    tecnologias: ['HTML5', 'CSS3', 'JavaScript', 'Google Apps Script', 'Google Sheets', 'Google Calendar', 'Google Drive', 'Mercado Pago', 'Facturación electrónica de ARCA', 'Resend', 'Cloudflare', 'Gemini API', 'GitHub Pages'],
+    arquitectura: 'El sitio y el panel están hechos con HTML, CSS y JavaScript, sin framework, y se publican en GitHub Pages. El navegador se comunica con una API en Google Apps Script, que usa Google Sheets como base de datos, Google Calendar para la disponibilidad y Google Drive para fotos y comprobantes. El servidor es la única fuente de verdad de los horarios disponibles y consulta directamente a Mercado Pago antes de confirmar un turno. El dominio propio se administra con Cloudflare.',
+    aporte: 'Dirección del producto y de las reglas de negocio: seña obligatoria, política de cambios y cancelaciones, turnos de 60 minutos, un servicio de manos y uno de pies por reserva, y el orden de trabajo por etapas. Armado de la infraestructura y las cuentas (dominio, correo propio, Mercado Pago, facturación electrónica de ARCA y calendario dedicado), publicación y mantenimiento del sistema, pruebas en uso real que detectaron errores que luego se corrigieron, y pedidos concretos de diseño y de experiencia de uso. El código se desarrolló con asistencia de inteligencia artificial (Claude) y no se presenta como escrito a mano.',
+    potencial: 'Ya existe como base reutilizable el motor de disponibilidad con agenda configurable, el flujo de seña con vencimiento y confirmación, los mails automáticos, la caja, la facturación electrónica (pensada para monotributo en Argentina) y el panel de administración. Requeriría desarrollo adicional atender a varias profesionales o recursos, usar una duración distinta por servicio (hoy es fija), configurar todo sin tocar código, soportar otros regímenes fiscales y contar con un backend más robusto si crece el volumen. No es un producto genérico instalable ni un servicio que ElevaLab ofrezca hoy.',
+    estadoActual: 'El sitio está publicado en un dominio propio y el sistema se probó con un pago real de punta a punta y con facturación electrónica de prueba. Todavía se están verificando detalles operativos, como el cierre automático de caja y la facturación de los turnos con seña. También quedan pendientes la galería de tendencias, el contacto por WhatsApp e Instagram y los turnos de media hora cargados desde el panel. No hay mediciones de resultados.',
     url: '',
-    textoSinEnlace: 'Enlace por confirmar'
+    textoSinEnlace: 'Enlace al sitio por confirmar con la titular'
   },
   {
     id: 'yca',
@@ -404,6 +411,8 @@ function renderListaProyectosCompleta(idContenedor, base) {
 
     const aporte = p.aporte ? `<div class="ancho"><dt>Mi aporte</dt><dd>${p.aporte}</dd></div>` : '';
     const potencial = p.potencial ? `<div class="ancho"><dt>Potencial de adaptación</dt><dd>${p.potencial}</dd></div>` : '';
+    const arquitectura = p.arquitectura ? `<div class="ancho"><dt>Arquitectura</dt><dd>${p.arquitectura}</dd></div>` : '';
+    const estadoActual = p.estadoActual ? `<div class="ancho"><dt>Estado actual</dt><dd>${p.estadoActual}</dd></div>` : '';
 
     const cuerpo = p.pendiente
       ? `${p.descripcionBreve && !/^Descripción pendiente/.test(p.descripcionBreve) ? `<p class="pr-desc">${p.descripcionBreve}</p>` : ''}<p class="pr-pend">Ficha en preparación. Todavía no tiene la descripción completa publicada.</p>`
@@ -415,8 +424,10 @@ function renderListaProyectosCompleta(idContenedor, base) {
           <div><dt>Problema / objetivo</dt><dd>${p.problema}</dd></div>
           <div><dt>Qué se construyó</dt><dd>${p.construido}</dd></div>
           <div class="ancho"><dt>Tecnologías</dt><dd>${tecnologias}</dd></div>
+          ${arquitectura}
           ${aporte}
           ${potencial}
+          ${estadoActual}
         </dl>`;
 
     return `
