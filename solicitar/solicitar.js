@@ -38,7 +38,8 @@
   };
 
   const S = {
-    token: '', textos: {}, bloques: [], pregunta: {}, resp: {}, guardado: {}, idx: 0, ocupado: false, enviado: false
+    token: '', textos: {}, bloques: [], pregunta: {}, resp: {}, guardado: {}, idx: 0, ocupado: false, enviado: false,
+    cola: Promise.resolve(), pendientes: 0   // guardados en segundo plano, de a uno y en orden
   };
 
   const $ = (id) => document.getElementById(id);
@@ -260,6 +261,30 @@
     return res;
   }
 
+  // Guarda un bloque sin hacer esperar a la persona: se avanza enseguida y el guardado
+  // corre de fondo, de a uno y en orden. Si falla, lo no guardado se reintenta al enviar
+  // o al tocar "Guardar y seguir más tarde".
+  function guardarEnSegundoPlano(b) {
+    S.pendientes++;
+    S.cola = S.cola.then(async function () {
+      try {
+        const g = await guardarBloque(b);
+        if (!g.ok && !errorFatal(g.error)) mensaje('error', textoError(g.error));
+      } finally { S.pendientes--; }
+    });
+    return S.cola;
+  }
+
+  // Espera lo que está guardándose y vuelve a mandar cualquier bloque que haya quedado sin guardar.
+  async function guardarTodo() {
+    await S.cola;
+    for (const b of S.bloques) {
+      const g = await guardarBloque(b);
+      if (!g.ok) return g;
+    }
+    return { ok: true };
+  }
+
   function errorFatal(cod) {
     if (cod === 'enlace_no_disponible') { pantallaMensaje('Enlace no disponible', t('enlace_no_disponible')); return true; }
     if (cod === 'ya_enviada') { pantallaMensaje('Respuestas recibidas', t('ya_enviado')); return true; }
@@ -280,16 +305,19 @@
     const b = S.bloques[S.idx];
     const falta = faltantes(b);
     if (falta.length) { mensaje('error', t('faltan_respuestas')); marcarFaltantes(falta); return; }
-    S.ocupado = true; overlay(true, t('guardando'));
-    const g = await guardarBloque(b);
-    overlay(false); S.ocupado = false;
-    if (!g.ok) { if (!errorFatal(g.error)) mensaje('error', textoError(g.error)); return; }
-    if (S.idx === S.bloques.length - 1) return enviar();
+    if (S.idx === S.bloques.length - 1) return enviar();   // enviar() guarda todo antes de mandar
+    guardarEnSegundoPlano(b);
     S.idx++; irArriba();
   }
 
   async function enviar() {
     S.ocupado = true; overlay(true, t('enviando'));
+    const g = await guardarTodo();
+    if (!g.ok) {
+      overlay(false); S.ocupado = false;
+      if (!errorFatal(g.error)) mensaje('error', textoError(g.error));
+      return;
+    }
     const e = await llamar('enviarSolicitud');
     overlay(false); S.ocupado = false;
     if (e.ok) {
@@ -315,7 +343,7 @@
   async function atras() {
     if (S.ocupado || S.idx === 0) return;
     ocultarMensaje();
-    guardarBloque(S.bloques[S.idx]);   // mejor esfuerzo, sin bloquear
+    guardarEnSegundoPlano(S.bloques[S.idx]);   // sin bloquear
     S.idx--; irArriba();
   }
 
@@ -323,7 +351,7 @@
     if (S.ocupado) return;
     ocultarMensaje();
     S.ocupado = true; overlay(true, t('guardando'));
-    const g = await guardarBloque(S.bloques[S.idx]);
+    const g = await guardarTodo();
     overlay(false); S.ocupado = false;
     if (!g.ok) { if (!errorFatal(g.error)) mensaje('error', textoError(g.error)); return; }
     mensaje('exito', t('guardado_salir'));
@@ -396,6 +424,10 @@
 
   // Si cambia el enlace (por ejemplo, se pega otro en la misma pestaña), se vuelve a empezar.
   window.addEventListener('hashchange', function () { location.reload(); });
+  // Si se cierra la pestaña mientras algo se está guardando de fondo, el navegador avisa.
+  window.addEventListener('beforeunload', function (ev) {
+    if (S.pendientes > 0 && !S.enviado) { ev.preventDefault(); ev.returnValue = ''; }
+  });
 
   iniciar();
 })();
