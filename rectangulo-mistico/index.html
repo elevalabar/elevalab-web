@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script>document.documentElement.classList.add("js");</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -65,7 +66,11 @@
       <img src="img/logo-completo-oscuro.png" alt="Rectángulo Místico" width="199" height="46">
     </a>
 
-    <nav aria-label="Navegación principal">
+    <button class="rm-menu-btn" type="button" aria-expanded="false" aria-controls="rm-nav" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="rm-nav" aria-label="Navegación principal">
       <a href="#hacemos">Qué hacemos</a>
       <a href="#trabajos">Nuestro trabajo</a>
       <a href="#historia">Historia</a>
@@ -534,5 +539,26 @@
 
   </footer>
 
+  <script>
+    (function () {
+      var b = document.querySelector(".rm-menu-btn");
+      var n = document.getElementById("rm-nav");
+      if (!b || !n) return;
+      function set(abierto) {
+        n.classList.toggle("is-open", abierto);
+        b.setAttribute("aria-expanded", abierto ? "true" : "false");
+        b.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+      }
+      b.addEventListener("click", function () {
+        set(b.getAttribute("aria-expanded") !== "true");
+      });
+      n.addEventListener("click", function (e) {
+        if (e.target.tagName === "A") set(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") set(false);
+      });
+    })();
+  </script>
 </body>
 </html>
