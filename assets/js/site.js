@@ -189,6 +189,8 @@ const PROYECTOS = [
   },
   {
     id: 'gestion-comercios',
+    imagen: 'assets/img/proyectos/gestion-comercios.webp',
+    imagenFicha: 'assets/img/proyectos/gestion-comercios-movil.webp',
     nombre: 'Gestión de comercios',
     categoria: 'Herramienta interna · ElevaLab',
     estado: 'interno',
