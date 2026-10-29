@@ -166,6 +166,14 @@ h1, h2, h3 {
   align-items: center;
 }
 
+.rm-kicker {
+  margin-bottom: 1.9rem;
+  color: var(--rm-apagado);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .03em;
+}
+
 .rm-hero h1 {
   max-width: 850px;
   font-size: clamp(2.55rem, 11.2vw, 7rem);
