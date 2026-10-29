@@ -1,11 +1,9 @@
-
 /* =========================================================
    RECTÁNGULO MÍSTICO
    Dirección visual: editorial independiente contemporánea
    Propuesta de diseño · identidad todavía no aprobada
    ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap');
 
 :root {
   --rm-carbon: #17161a;
@@ -14,12 +12,13 @@
   --rm-crema: #f1ebdd;
   --rm-crema-2: #e7dfcf;
   --rm-tinta: #211f23;
-  --rm-magenta: #d6247f;
-  --rm-verde: #2fae7a;
+  --rm-magenta: #b8286a;
+  --rm-vino: #820b40;
+  --rm-verde: #74b33c;
   --rm-apagado: #aaa4ae;
   --rm-apagado-claro: #625c63;
 
-  --rm-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --rm-serif: 'Marcellus', 'Trajan Pro', Georgia, 'Times New Roman', serif;
   --rm-sans: 'DM Sans', system-ui, sans-serif;
 
   --rm-pad: 22px;
@@ -68,9 +67,9 @@ ul, ol {
 
 h1, h2, h3 {
   font-family: var(--rm-serif);
-  font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -.035em;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: .005em;
 }
 
 ::selection {
@@ -121,14 +120,11 @@ h1, h2, h3 {
   text-decoration: none;
   font-family: var(--rm-serif);
   font-size: 19px;
-  font-weight: 600;
-  letter-spacing: -.025em;
 }
 
 .rm-marca img {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
+  width: auto;
+  height: 46px;
 }
 
 .rm-top nav {
@@ -172,10 +168,11 @@ h1, h2, h3 {
 
 .rm-hero h1 {
   max-width: 850px;
-  font-size: clamp(3.8rem, 14vw, 8.8rem);
-  line-height: .88;
-  font-weight: 700;
-  letter-spacing: -.075em;
+  font-size: clamp(2.55rem, 11.2vw, 7rem);
+  line-height: .98;
+  font-weight: 400;
+  letter-spacing: .01em;
+  text-transform: uppercase;
 }
 
 .rm-hero h1 span {
@@ -183,11 +180,9 @@ h1, h2, h3 {
 }
 
 .rm-hero h1 span + span {
-  margin-top: .12em;
-  margin-left: .35em;
+  margin-top: .04em;
+  margin-left: .9em;
   color: var(--rm-magenta);
-  font-weight: 500;
-  font-style: italic;
 }
 
 .rm-lead {
@@ -270,9 +265,9 @@ h1, h2, h3 {
 
 .rm-sec h2 {
   max-width: 780px;
-  font-size: clamp(2.5rem, 7vw, 4.7rem);
-  line-height: .99;
-  letter-spacing: -.055em;
+  font-size: clamp(2.1rem, 5.8vw, 3.9rem);
+  line-height: 1.06;
+  letter-spacing: 0;
 }
 
 .rm-sec .rm-intro {
@@ -366,7 +361,7 @@ h1, h2, h3 {
 .rm-disc h3 small {
   display: inline-block;
   margin-left: 7px;
-  color: var(--rm-magenta);
+  color: var(--rm-vino);
   font: 600 11px var(--rm-sans);
   letter-spacing: .025em;
   white-space: nowrap;
@@ -437,8 +432,8 @@ h1, h2, h3 {
   display: block;
   margin-bottom: 5px;
   color: var(--rm-crema);
-  font: 600 clamp(1.45rem, 3vw, 2rem)/1.1 var(--rm-serif);
-  letter-spacing: -.025em;
+  font: 400 clamp(1.45rem, 3vw, 2rem)/1.1 var(--rm-serif);
+  letter-spacing: 0;
 }
 
 .rm-muestra {
@@ -478,8 +473,8 @@ h1, h2, h3 {
 
 .rm-linea strong {
   color: var(--rm-tinta);
-  font: 700 clamp(3.5rem, 10vw, 5.8rem)/.95 var(--rm-serif);
-  letter-spacing: -.06em;
+  font: 400 clamp(3.5rem, 10vw, 5.8rem)/.95 var(--rm-serif);
+  letter-spacing: -.02em;
 }
 
 .rm-linea p {
@@ -499,8 +494,8 @@ h1, h2, h3 {
   padding: 30px 26px;
   background: var(--rm-tinta);
   color: var(--rm-crema);
-  font: italic 500 clamp(1.45rem, 4vw, 2.4rem)/1.25 var(--rm-serif);
-  letter-spacing: -.025em;
+  font: 400 clamp(1.4rem, 3.6vw, 2.2rem)/1.3 var(--rm-serif);
+  letter-spacing: 0;
 }
 
 .rm-cita::after {
@@ -637,7 +632,7 @@ h1, h2, h3 {
   }
 
   .rm-hero h1 {
-    font-size: clamp(5.5rem, 9vw, 9rem);
+    font-size: clamp(3.6rem, 6.4vw, 6.4rem);
   }
 
   .rm-retrato {
@@ -700,7 +695,7 @@ h1, h2, h3 {
 
   .rm-galeria figure:first-child {
     grid-column: auto;
-    grid-row: span 2;
+    grid-row: span 3;
   }
 
   .rm-galeria figure:first-child img {
@@ -776,7 +771,7 @@ h1, h2, h3 {
   }
 
   .rm-hero h1 {
-    font-size: clamp(3.4rem, 15vw, 4.5rem);
+    font-size: clamp(2.3rem, 11vw, 3rem);
   }
 
   .rm-disc li {
