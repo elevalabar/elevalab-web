@@ -1,0 +1,85 @@
+/* Rectángulo Místico · estilos propios (no usa los de ElevaLab). Paleta y tipografías: propuesta inicial, no aprobada. */
+:root{--rm-carbon:#17161a;--rm-carbon-2:#232127;--rm-crema:#f1ebdd;--rm-tinta:#1b1a1e;--rm-magenta:#d6247f;--rm-verde:#2fae7a;--rm-apagado:#a9a5ad;--rm-apagado-claro:#5b5760;--rm-serif:'Fraunces',Georgia,'Times New Roman',serif;--rm-sans:'Work Sans',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;--rm-pad:20px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--rm-carbon);color:var(--rm-crema);font:400 17px/1.6 var(--rm-sans);overflow-x:hidden}
+img,svg{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3,p,ul,ol,figure{margin:0}ul,ol{padding:0;list-style:none}
+h1,h2,h3{font-family:var(--rm-serif);font-weight:600;line-height:1;letter-spacing:-.02em}
+:focus-visible{outline:3px solid var(--rm-verde);outline-offset:3px}
+.rm-wrap{max-width:1160px;margin:0 auto;padding:0 var(--rm-pad)}
+.rm-aviso{background:var(--rm-magenta);color:#fff;font-size:14px;padding:8px var(--rm-pad);text-align:center}
+.rm-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding-top:18px;padding-bottom:18px}
+.rm-marca{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--rm-serif);font-weight:600;font-size:19px}
+.rm-marca img{width:34px;height:34px}
+.rm-top nav{display:flex;gap:6px 22px;flex-wrap:wrap;font-size:15px}
+.rm-top nav a{text-decoration:none;padding:10px 0;min-height:44px;border-bottom:2px solid transparent}
+.rm-top nav a:hover{border-color:var(--rm-verde)}
+/* Hero */
+.rm-hero{padding:28px 0 64px}
+.rm-hero .rm-wrap{display:grid;gap:40px}
+.rm-hero h1{font-size:clamp(3.2rem,16vw,8.4rem);font-weight:700;letter-spacing:-.04em}
+.rm-hero h1 span{display:block}
+.rm-hero h1 span+span{margin-left:.55em;color:var(--rm-magenta);font-style:italic;font-weight:500}
+.rm-lead{margin-top:28px;font-size:1.2rem;max-width:30em;color:#ddd7ca}
+.rm-btn{display:inline-flex;align-items:center;min-height:48px;margin-top:28px;padding:0 26px;background:var(--rm-verde);color:#0d1a14;font-weight:600;text-decoration:none;border-radius:0}
+.rm-btn:hover{background:#4ccb96}
+.rm-retrato{position:relative;margin:0 22px 22px 0}
+.rm-retrato::before{content:"";position:absolute;inset:22px -22px -22px 22px;background:var(--rm-magenta)}
+.rm-retrato::after{content:"";position:absolute;width:34%;aspect-ratio:1;right:-14px;top:-14px;border:6px solid var(--rm-verde)}
+.rm-retrato img{position:relative;z-index:1;width:100%;aspect-ratio:4/5;object-fit:cover}
+/* Claras */
+.rm-claro{background:var(--rm-crema);color:var(--rm-tinta);padding:72px 0}
+.rm-oscuro{padding:72px 0}
+.rm-sec h2{font-size:clamp(2rem,8vw,3.6rem);max-width:14em}
+.rm-sec .rm-intro{margin-top:16px;max-width:34em;color:var(--rm-apagado-claro)}
+.rm-oscuro .rm-intro{color:var(--rm-apagado)}
+/* Disciplinas */
+.rm-disc{margin-top:44px;border-top:2px solid var(--rm-tinta)}
+.rm-disc li{display:grid;grid-template-columns:84px 1fr;gap:6px 20px;padding:26px 0;border-bottom:1px solid #cfc7b4}
+.rm-forma{grid-row:span 2;width:84px;height:84px;position:relative}
+.rm-f1{background:var(--rm-magenta);width:58px;height:84px;box-shadow:10px 0 0 -4px var(--rm-tinta)}
+.rm-f2{background:repeating-conic-gradient(var(--rm-verde) 0 25%,transparent 0 50%) 0 0/28px 28px;border:2px solid var(--rm-verde)}
+.rm-f3{background:linear-gradient(var(--rm-tinta) 0 18%,transparent 0 30%,var(--rm-magenta) 0 48%,transparent 0 60%,var(--rm-verde) 0 78%,transparent 0)}
+.rm-f4{border:8px solid var(--rm-tinta);outline:3px solid var(--rm-magenta);outline-offset:5px}
+.rm-disc h3{font-size:clamp(1.5rem,5.4vw,2.3rem)}
+.rm-disc h3 small{font:500 .9rem var(--rm-sans);letter-spacing:0;color:var(--rm-magenta);margin-left:10px;white-space:nowrap}
+.rm-disc p{color:var(--rm-apagado-claro);max-width:34em}
+/* Trabajos */
+.rm-galeria{margin-top:44px;display:grid;gap:18px}
+.rm-galeria figure{position:relative;background:var(--rm-carbon-2)}
+.rm-galeria img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.rm-galeria figcaption{padding:12px 2px 0;font-size:15px;color:var(--rm-apagado)}
+.rm-galeria figcaption b{display:block;font:600 1.25rem var(--rm-serif);color:var(--rm-crema)}
+.rm-muestra{position:absolute;top:10px;left:10px;background:var(--rm-crema);color:var(--rm-tinta);font-size:12px;font-weight:600;padding:3px 8px}
+/* Historia */
+.rm-linea{margin-top:44px;display:grid;gap:30px}
+.rm-linea li{display:grid;gap:6px;padding-left:18px;border-left:6px solid var(--rm-verde)}
+.rm-linea li:nth-child(odd){border-color:var(--rm-magenta)}
+.rm-linea strong{font:700 clamp(2.8rem,12vw,5rem)/1 var(--rm-serif);letter-spacing:-.03em}
+.rm-linea p{max-width:30em;color:var(--rm-apagado-claro)}
+.rm-cita{margin-top:56px;padding:28px;background:var(--rm-tinta);color:var(--rm-crema);font:italic 500 clamp(1.3rem,5vw,2rem)/1.25 var(--rm-serif);position:relative}
+.rm-cita::after{content:"";position:absolute;right:-10px;bottom:-10px;width:56px;height:56px;border:6px solid var(--rm-magenta);z-index:-0;pointer-events:none}
+/* Cierre */
+.rm-cierre{border-top:8px solid var(--rm-magenta)}
+.rm-pub{margin-top:36px;display:grid;gap:22px}
+.rm-pub h3{font-size:1.4rem;color:var(--rm-verde)}
+.rm-pub p{color:var(--rm-apagado);margin-top:6px}
+.rm-pie{padding:28px 0 40px;font-size:14px;color:var(--rm-apagado);border-top:1px solid #34323a}
+.rm-pie .rm-wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
+@media (min-width:860px){
+:root{--rm-pad:40px}
+.rm-hero{padding:56px 0 100px}
+.rm-hero .rm-wrap{grid-template-columns:1.25fr .75fr;align-items:center;gap:64px}
+.rm-claro,.rm-oscuro{padding:112px 0}
+.rm-disc li{grid-template-columns:120px 1.1fr 1.4fr;align-items:center;gap:32px;padding:34px 0}
+.rm-disc li>div{display:contents}.rm-forma{grid-row:auto;width:100px;height:100px}.rm-f1{width:70px;height:100px}
+.rm-galeria{grid-template-columns:1.2fr 1fr;grid-template-rows:auto auto}
+.rm-galeria figure:first-child{grid-row:span 2}
+.rm-galeria figure:first-child img{aspect-ratio:4/5}
+.rm-linea{grid-template-columns:repeat(3,1fr);gap:36px}
+.rm-linea li:first-child{grid-column:span 3;grid-template-columns:auto 1fr;align-items:end;gap:28px}
+.rm-pub{grid-template-columns:repeat(3,1fr);gap:40px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
