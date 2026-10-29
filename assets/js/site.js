@@ -174,6 +174,8 @@ const PROYECTOS = [
   },
   {
     id: 'burdel-bot',
+    imagen: 'assets/img/proyectos/burdel-bot.webp',
+    imagenFicha: 'assets/img/proyectos/burdel-bot-movil.webp',
     nombre: 'Bot de Discord',
     categoria: 'Automatización para una comunidad de Discord',
     estado: 'en-vivo',
