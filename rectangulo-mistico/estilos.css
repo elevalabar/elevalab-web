@@ -572,14 +572,15 @@ h1, h2, h3 {
 .rm-pie .rm-pie-elevalab {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   vertical-align: middle;
 }
 
 .rm-pie .rm-pie-elevalab img {
-  width: 28px;
-  height: 28px;
+  width: 18px;
+  height: 18px;
   display: block;
+  border-radius: 4px;
 }
 
 /* TABLET */
