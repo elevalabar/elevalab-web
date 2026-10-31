@@ -65,7 +65,7 @@
   var lp = $("#lista-productos");
   if (!pub.length) {
     var v = el("li", "prod vacio");
-    v.appendChild(slot(null, "", "Producto destacado pendiente"));
+    v.appendChild(slot(D.marca.productosVacioImagen, D.marca.productosVacioAlt, "Producto destacado pendiente"));
     v.appendChild(el("h3", null, "Productos en preparación"));
     v.appendChild(el("p", null, "Estamos cargando el catálogo. Mientras tanto, consultá por lo que estés buscando."));
     var b = el("a", "btn", "Consultar por WhatsApp");
