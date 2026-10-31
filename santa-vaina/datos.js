@@ -5,8 +5,10 @@ window.SV = {
   marca: {
     nombre: "Santa Vaina",
     // Foto de portada: ruta relativa (ej. "img/portada.webp"). null = se muestra el espacio pendiente.
-    heroImagen: null,
-    heroAlt: ""
+    heroImagen: "img/ambiente-ia/ia-tote-estampado-mujer-costa.webp",
+    heroAlt: "Imagen ilustrativa: mujer de espaldas frente al mar con un tote estampado",
+    // true = las fotos cargadas llevan el rótulo "Imagen ilustrativa". Poner false cuando todas sean fotos reales.
+    muestra: true
   },
 
   contacto: {
@@ -18,13 +20,13 @@ window.SV = {
 
   // Categorías. imagen: null = espacio pendiente de foto real.
   categorias: [
-    { id: "marroquineria-textil", nombre: "Marroquinería textil", imagen: null,
+    { id: "marroquineria-textil", nombre: "Marroquinería textil", imagen: "img/ambiente-ia/ia-bolsos-estampados-lino.webp",
       texto: "Piezas confeccionadas a mano, con variedad de estampados." },
-    { id: "accesorios", nombre: "Accesorios", imagen: null,
+    { id: "accesorios", nombre: "Accesorios", imagen: "img/ambiente-ia/ia-set-azul-estampado-ventana.webp",
       texto: "Complementos artesanales para el uso cotidiano y para regalar." },
-    { id: "capsulas-cuero", nombre: "Cápsulas en cuero", imagen: null,
+    { id: "capsulas-cuero", nombre: "Cápsulas en cuero", imagen: "img/ambiente-ia/ia-set-cuero-natural.webp",
       texto: "Pequeñas cápsulas de accesorios en cuero." },
-    { id: "proximos", nombre: "Próximos lanzamientos", imagen: null,
+    { id: "proximos", nombre: "Próximos lanzamientos", imagen: "img/ambiente-ia/ia-detalle-cierre-lona-cuero.webp",
       texto: "Nuevas colecciones con una mirada más náutica." }
   ],
 
