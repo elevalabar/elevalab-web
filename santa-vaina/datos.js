@@ -8,7 +8,10 @@ window.SV = {
     heroImagen: "img/ambiente-ia/ia-tote-estampado-mujer-costa.webp",
     heroAlt: "Imagen ilustrativa: mujer de espaldas frente al mar con un tote estampado",
     // true = las fotos cargadas llevan el rótulo "Imagen ilustrativa". Poner false cuando todas sean fotos reales.
-    muestra: true
+    muestra: true,
+    // Imagen de la tarjeta "Productos en preparación" (mientras no haya productos publicados). null = espacio pendiente.
+    productosVacioImagen: "img/ambiente-ia/ia-productos-en-preparacion.webp",
+    productosVacioAlt: "Imagen ilustrativa: mochila de lona y cuero con alpargatas y objetos de playa sobre un muelle"
   },
 
   contacto: {
