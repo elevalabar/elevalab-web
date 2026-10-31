@@ -17,6 +17,11 @@
     if (imagen) {
       var i = new Image(); i.src = imagen; i.alt = alt || ""; i.loading = "lazy"; i.decoding = "async";
       f.appendChild(i);
+      if (D.marca.muestra) { // rótulo provisional mientras las fotos sean ilustrativas
+        var m = el("span", null, "Imagen ilustrativa");
+        m.style.cssText = "position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,.88);color:#10283d;font:500 .6rem/1 Jost,sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:6px 8px";
+        f.appendChild(m);
+      }
     } else {
       f.classList.add("pendiente");
       f.appendChild(el("span", null, etiqueta || "Foto pendiente"));
